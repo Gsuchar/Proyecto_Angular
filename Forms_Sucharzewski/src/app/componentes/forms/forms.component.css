@@ -1,0 +1,13 @@
+.main-container{
+    display: flex;
+    max-width: 80%;
+    margin: 30px 30px;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+#formDesafio input:focus{
+    box-shadow: 1px 3px rgb(218 165 32 / 57%);
+    border: 1px solid goldenrod;
+}

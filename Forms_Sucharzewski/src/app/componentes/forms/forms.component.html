@@ -1,0 +1,58 @@
+<div  class="main-container">
+    <h1>Formularios en Angular / Reactive Forms</h1> 
+    <h2> - Registro de Usuarios - </h2>
+   <form [formGroup]="formularioUser" (ngSubmit)="agregarUser()" id="formDesafio" >
+       <!-- 2 column grid layout with text inputs for the first and last names -->
+       <div class="row mb-4">
+         <div class="col">
+           <div class="form-outline">
+             <input formControlName="nombre" type="text" id="form3Example1" class="form-control" placeholder="Nombre" />
+             <!-- <label class="form-label" for="form3Example1">Nombre</label>-->
+             <p *ngIf="formularioUser.get('nombre')?.touched && formularioUser.get('nombre')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
+           </div>
+         </div>
+         <div class="col">
+           <div class="form-outline">
+             <input formControlName="apellido" type="text" id="form3Example2" class="form-control" placeholder="Apellido" />
+             <!-- <label class="form-label" for="form3Example2">Apellido</label>-->
+             <p *ngIf="formularioUser.get('apellido')?.touched && formularioUser.get('apellido')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
+           </div>
+         </div>
+       </div>
+     
+       <!-- Email input -->
+       <div class="form-outline mb-4">
+         <input formControlName="email" type="email" id="form3Example3" class="form-control" placeholder="Email" />
+         <!-- <label class="form-label" for="form3Example3">Email</label>-->
+         <p *ngIf="formularioUser.get('email')?.touched && formularioUser.get('email')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
+         <p *ngIf="formularioUser.get('email')?.touched && formularioUser.get('email')?.errors?.['email']" class="text-warning">El formato de correo no es correcto.</p>
+       </div>
+     
+       <!-- Password input -->
+       <div class="form-outline mb-4">
+         <input formControlName="password" type="password" id="form3Example4" class="form-control" placeholder="Password" />
+         <!-- <label class="form-label" for="form3Example4">Password</label>-->
+         <p *ngIf="formularioUser.get('password')?.touched && formularioUser.get('password')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
+         <p *ngIf="formularioUser.get('password')?.touched && formularioUser.get('password')?.errors?.['minlength']" class="text-warning">El password debe tener al menos 5 caracteres.</p>
+       </div>
+       <div class="form-outline mb-4">
+           <input formControlName="password2" type="password" id="form3Example4_2" class="form-control" placeholder="Repite el Password" />
+           <!-- <label class="form-label" for="form3Example4_2">Repite el Password</label>-->
+           <p *ngIf="formularioUser.get('password2')?.touched && formularioUser.get('password2')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
+           <p *ngIf="formularioUser.get('password2')?.touched && formularioUser.get('password2')?.errors?.['minlength']" class="text-warning">El password debe tener al menos 5 caracteres.</p>
+           <p *ngIf=" !controlPasswordsIguales && formularioUser.get('password2')?.untouched" class="text-warning">Los passwords deben ser iguales.</p>
+         </div>
+     
+       <!-- Checkbox -->
+       <div class="form-check d-flex justify-content-left mb-4">
+         <input formControlName="admin" class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
+         <label class="form-check-label" for="form2Example33">Administrador</label>
+       </div>
+     
+       <!-- Submit button -->
+       <button [disabled]="formularioUser.invalid" type="submit" class="btn btn-success btn-block mb-4">Registrar Usuario</button>
+     
+       <!-- Register buttons -->
+       
+     </form>
+   </div>
