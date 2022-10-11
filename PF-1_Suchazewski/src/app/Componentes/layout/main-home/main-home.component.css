@@ -1,0 +1,13 @@
+.grid-container {
+  margin: 20px;
+}
+
+.example-card {
+  max-width: 250px;
+}
+
+.example-header-image {
+  background-image: url('https://pluralsight2.imgix.net/paths/images/angular-14a0f6532f.png');
+  background-size: cover;
+}
+

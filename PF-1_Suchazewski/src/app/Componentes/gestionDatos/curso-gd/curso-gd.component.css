@@ -1,0 +1,11 @@
+body{background-color: brown;}
+.panel_listas{
+  display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: baseline;
+    min-width:none;
+}
+h2{
+  text-align: -webkit-center;
+}

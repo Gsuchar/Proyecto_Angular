@@ -1,0 +1,47 @@
+<!--<div class="grid-container">
+  <h1 >Dashboard</h1>
+  <mat-grid-list  rowHeight="350px">
+    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+            {{card.title}}
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>Card Content Here</div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>-->
+<div class="grid-container">
+  <!--<h2>Accesos rapidos de Usuario.</h2>-->
+  <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image col-10"></div>
+      <mat-card-title>Alumnos</mat-card-title>
+      <mat-card-subtitle>Editar alumanos</mat-card-subtitle>
+    </mat-card-header>
+    <!--<img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">-->
+    <mat-card-content>
+      <p>
+        Acceso rapido a Alumnos.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!--<button mat-button>LIKE</button>-->
+      <button type="button"  class="btn btn-outline-light col-12">Inscribir</button>
+
+
+    </mat-card-actions>
+  </mat-card>
+
+</div>

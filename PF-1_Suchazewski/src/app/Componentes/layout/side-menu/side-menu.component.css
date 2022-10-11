@@ -1,0 +1,28 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+  position: absolute;
+}
+.navbar{
+  background-color:  #7b1fa2;
+}
+
+.mat-drawer-side {
+  border-right: none;
+}
+.mat-nav-list .mat-list-item:hover{
+  background-color: #303030;
+  border-right: #303030 1px solid;
+}
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
