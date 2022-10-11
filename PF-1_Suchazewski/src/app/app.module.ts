@@ -26,8 +26,8 @@ import { CursoAltaComponent } from './Componentes/gestionDatos/curso-gd/curso-ne
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
-    MaterialModule,
-    MatTableModule
+    MaterialModule
+
 
 
 

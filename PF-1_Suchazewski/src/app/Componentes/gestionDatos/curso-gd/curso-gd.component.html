@@ -1,3 +1,4 @@
+<mat-card class="card_listas">
 <div>
   <h2>
     Listado de Cursos
@@ -11,12 +12,13 @@
     <input type="text" matInput (keyup)="filtroCurso($event)">
   </mat-form-field>
   <button mat-icon-button class="col-md-4" (click)="openDialog()">
-    <mat-icon>assignment_add</mat-icon>
+    <mat-icon>format_list_bulleted_add</mat-icon>
+    <!-- <mat-icon>assignment_add</mat-icon> -->
   </button>
 
 </div>
 
-<div class="container">
+<div class="">
   <table mat-table [dataSource]="DATOS_CURSOS" class="col-md-12 " matSort>
     <!-- 'id' -->
     <ng-container matColumnDef="id">
@@ -72,3 +74,4 @@
 
 
 </div>
+</mat-card>

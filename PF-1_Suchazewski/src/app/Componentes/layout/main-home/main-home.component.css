@@ -11,3 +11,10 @@
   background-size: cover;
 }
 
+.card_listas_panel{
+  width: 95%;
+  margin: 3% 2.5%;
+  display: flex;
+  justify-content: space-evenly;
+  /*grid-template-columns: auto auto auto ;*/
+}

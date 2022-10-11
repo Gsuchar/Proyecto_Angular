@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Curso, listaCursos } from 'src/app/models/curso_interface';
 import { CursoAltaComponent } from "./curso-new/curso-alta/curso-alta.component";
 import { MatDialog } from '@angular/material/dialog';
-import { empty } from 'rxjs';
+
 
 @Component({
   selector: 'app-curso-gd',
@@ -112,8 +112,9 @@ export class CursoGdComponent implements OnInit {
 
   openDialog() {
     let dialog = this.dialog.open(CursoAltaComponent, {
-      /* width: '500px',
-      height: '500px', */
+      width: '250px',
+      height: '500px',
+
 
     });
 

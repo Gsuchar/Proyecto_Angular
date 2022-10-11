@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
-import { MatTableModule } from "@angular/material/table";
+import { MatTableModule, MatTableDataSource  } from "@angular/material/table";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -14,7 +14,7 @@ import { MatGridList } from "@angular/material/grid-list";
 import { MatMenu } from "@angular/material/menu";
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {CdkTableModule} from '@angular/cdk/table';
 @NgModule({
     imports:[
       CommonModule,
@@ -28,7 +28,9 @@ import { MatDialogModule } from '@angular/material/dialog';
       MatSidenavModule,
       ReactiveFormsModule,
       MatDialogModule,
+      CdkTableModule,
       MatListModule
+
 
     ],
     exports:[
@@ -43,6 +45,7 @@ import { MatDialogModule } from '@angular/material/dialog';
       MatSidenavModule,
       ReactiveFormsModule,
       MatDialogModule,
+      CdkTableModule,
       MatListModule
 
 
