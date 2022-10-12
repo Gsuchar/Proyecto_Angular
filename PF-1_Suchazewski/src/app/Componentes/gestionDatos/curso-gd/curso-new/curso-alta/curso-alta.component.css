@@ -1,6 +1,7 @@
 .h1dialog{
   text-align: center;
   border-bottom: 1px #d3d3d3 dotted;
+  margin-bottom: 30px;
 }
 .mat-form-field{
   min-width: 100%;

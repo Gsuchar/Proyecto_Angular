@@ -68,7 +68,7 @@
       </td>
     </ng-container>
     <!-- <tr mat-header-row *matHeaderCellDef="['Id','Nombre','Grupo','Profesor','Inicio','Fin','Abierto','Acciones']"></tr> -->
-    <tr mat-header-row *matHeaderCellDef="TabCursosCols"></tr>
+    <tr mat-header-row *matHeaderRowDef ="TabCursosCols"></tr>
     <tr mat-row *matRowDef="let row; columns:TabCursosCols"></tr>
   </table>
 
