@@ -12,98 +12,44 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class CursoGdComponent implements OnInit {
 
-
-
-
   datosCursosBase = listaCursos
 
-  /*cursos: Curso[] = [
-    {
-        id:1,
-        nombre:'Angular',
-        grupo:'A1',
-        profesor: 'Abner',
-        fechaInicio: new Date(2022, 0, 1),
-        fechaFin: new Date(2022, 2, 31),
-        inscripcion: true
-    },
-    {
-        id:2,
-        nombre:'React JS',
-        grupo:'R1',
-        profesor: 'Goku',
-        fechaInicio: new Date(2022, 1, 1),
-        fechaFin: new Date(2022, 3, 31),
-        inscripcion: true
-    },
-    {
-        id:3,
-        nombre:'Node Js',
-        grupo:'N1',
-        profesor: 'Vegueta',
-        fechaInicio: new Date(2022, 3, 1),
-        fechaFin: new Date(2022, 5, 31),
-        inscripcion: true
-    },
-    {
-        id:3,
-        nombre:'Desarrollo Web',
-        grupo:'DW1',
-        profesor: 'Vegueta',
-        fechaInicio: new Date(2022, 2, 1),
-        fechaFin: new Date(2022, 4, 31),
-        inscripcion: false
-    },
-    {
-        id:4,
-        nombre:'CURSO 4',
-        grupo:'C1',
-        profesor: 'Bulma',
-        fechaInicio: new Date(2022, 2, 1),
-        fechaFin: new Date(2022, 5, 31),
-        inscripcion: true
-    },
-    {
-        id:5,
-        nombre:'CURSO 5',
-        grupo:'C2',
-        profesor: 'Bulma',
-        fechaInicio: new Date(2022, 5, 1),
-        fechaFin: new Date(2022, 9, 31),
-        inscripcion: true
-    }]*/
   DATOS_CURSOS = new MatTableDataSource<Curso>(this.datosCursosBase)
   TabCursosCols: string [] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','acciones'];
-
-  //dataSourseCursos: MatTableDataSource<Curso> = new MatTableDataSource<Curso>(this.cursos)
-
-  //displayedColumns: string[] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','toDo'];
-  //datosCursosBase = listaCursos
-  //DATOS_CURSOS = new MatTableDataSource([])
-  //displayedColumns: string[] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','toDo'];
-
-  //colum: string [] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','toDo'];
-  //tablaDatos: MatTableDataSource<listaCursos> = new MatTableDataSource<listaCursos>(this.listaCursos)
-  //DATOS_CURSOS:any;
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.DATOS_CURSOS.data = this.datosCursosBase
-    //this.DATOS_CURSOS = new MatTableDataSource(this.datosCursosBase);
-
   }
 
+  editar(element:any){
+    console.log(element);
+    /* let dialog = */ this.dialog.open(CursoAltaComponent, {
+      width: '250px',
+      //height: '500px',
+      /*mandoo datos al dialog segun el que quise editar*/
+      data: element,
 
+    }).beforeClosed().subscribe((res: Curso) => {
+      let found = this.datosCursosBase.find(curSo=>curSo.id == res.id);
+      if(found){
+             found.nombre = res.nombre;
+             found.grupo = res.grupo;
+             found.profesor = res.profesor;
+             found.fechaInicio = res.fechaInicio;
+             found.fechaFin = res.fechaFin;
+             found.inscripcion = res.inscripcion;
+      }
+      //console.log(found);
+
+     })
+
+  }
   filtroCurso(event:Event){
     const userData = (event.target as HTMLInputElement).value;
     this.DATOS_CURSOS.filter= userData.trim().toLocaleLowerCase();
   }
 
- /*  filtroCursoGrupo(event:Event){
-    const userData = (event.target as HTMLInputElement).value;
-    this.DATOS_CURSOS.filter= userData.trim().toLocaleLowerCase();
-  }
- */
   DeleteCurso(id: number) {
     let position = this.datosCursosBase.findIndex(listaCursos => listaCursos.id == id)
     this.datosCursosBase.splice(position, 1)
@@ -111,26 +57,26 @@ export class CursoGdComponent implements OnInit {
   }
 
   openDialog() {
-    let dialog = this.dialog.open(CursoAltaComponent, {
-      width: '250px',
-      height: '500px',
-
-
-    });
-
-    dialog.beforeClosed().subscribe((res: Curso) => {
-     console.log(res);
-     if (res!=undefined) {
-      this.datosCursosBase.push(
-        {
-           ...res,
-           id:this.datosCursosBase.length+1
-         }
+    /* let dialog = */ this.dialog.open(
+      CursoAltaComponent, {
+        width: '250px',
+        //height: '500px',
+        }
+    ).beforeClosed().subscribe((res: Curso) => {
+      //console.log(res);
+      if (res!=undefined) {
+        this.datosCursosBase.push(
+          {
+            ...res,
+            id:this.datosCursosBase.length+1
+          }
        )
+
        this.DATOS_CURSOS.data = this.datosCursosBase
-     }
+      }
     })
   }
+/* Llave fin*/
 }
 
 

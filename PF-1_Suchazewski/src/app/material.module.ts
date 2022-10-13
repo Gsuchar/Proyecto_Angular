@@ -29,7 +29,7 @@ import {CdkTableModule} from '@angular/cdk/table';
       ReactiveFormsModule,
       MatDialogModule,
       CdkTableModule,
-      MatListModule
+      MatListModule,
 
 
     ],

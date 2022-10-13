@@ -11,6 +11,8 @@ import { SideMenuComponent } from "./Componentes/layout/side-menu/side-menu.comp
 import { MainHomeComponent } from "./Componentes/layout/main-home/main-home.component";
 import { CursoGdComponent } from "./Componentes/gestionDatos/curso-gd/curso-gd.component";
 import { CursoAltaComponent } from './Componentes/gestionDatos/curso-gd/curso-new/curso-alta/curso-alta.component';
+import { AlumnoGdComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-gd.component";
+import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-new/alumno-alta/alumno-alta.component";
 
 @NgModule({
   declarations: [
@@ -19,14 +21,16 @@ import { CursoAltaComponent } from './Componentes/gestionDatos/curso-gd/curso-ne
     SideMenuComponent,
     MainHomeComponent,
     CursoGdComponent,
-    CursoAltaComponent
-
+    CursoAltaComponent,
+    AlumnoGdComponent,
+    AlumnoAltaComponent
   ],
   imports: [
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
     MaterialModule
+
 
 
 

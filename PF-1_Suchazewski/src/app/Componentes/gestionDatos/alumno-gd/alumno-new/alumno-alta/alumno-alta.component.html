@@ -1,0 +1,25 @@
+<h1 mat-dialog-title class="h1dialog">{{title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="formAlumno" >
+    <mat-form-field >
+        <mat-label>Nombre</mat-label>
+        <input matInput  formControlName="nombre" placeholder="Ingrese Nombre">
+      </mat-form-field>
+    <mat-form-field >
+        <mat-label>Apellido</mat-label>
+        <input matInput  formControlName="apellido" placeholder="Ingrese Apellido">
+      </mat-form-field>
+    <mat-form-field >
+        <mat-label>Telefono</mat-label>
+        <input matInput  formControlName="telefono" placeholder="Ingrese Telefono">
+      </mat-form-field>
+    <mat-form-field >
+        <mat-label>E-mail</mat-label>
+        <input matInput  formControlName="email" placeholder="Ingrese E-mail">
+      </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button  (click)="guardar()">Guardar</button>
+</div>
