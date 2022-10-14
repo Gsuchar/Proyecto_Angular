@@ -52,7 +52,7 @@ export class AlumnoGdComponent implements OnInit {
   }
 
   openDialog() {
-    let dialog = this.dialog.open(
+    /* let dialog =  */this.dialog.open(
       AlumnoAltaComponent, {
         width: '250px',
         //height: '500px',
@@ -63,6 +63,7 @@ export class AlumnoGdComponent implements OnInit {
         this.datosAlumnosBase.push(
           {
             ...res,
+            //Parche feo momentaño para asignar "id visual"
             id:this.datosAlumnosBase.length+1
           }
        )

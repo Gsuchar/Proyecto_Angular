@@ -13,6 +13,7 @@ import { CursoGdComponent } from "./Componentes/gestionDatos/curso-gd/curso-gd.c
 import { CursoAltaComponent } from './Componentes/gestionDatos/curso-gd/curso-new/curso-alta/curso-alta.component';
 import { AlumnoGdComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-gd.component";
 import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-new/alumno-alta/alumno-alta.component";
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno
     BrowserModule,
     CommonModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
 
 
 
