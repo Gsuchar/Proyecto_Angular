@@ -19,8 +19,8 @@
         <input matInput  formControlName="telefono" placeholder="Ingrese Telefono">
       </mat-form-field>
       <p *ngIf="formAlumno.get('telefono')?.touched && formAlumno.get('telefono')?.errors?.['required']" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="formAlumno.get('telefono')?.touched && formAlumno.get('telefono')?.errors?.['pattern']" class="text-danger">Debes escribir el telefono con numeros.</p>
-      <p *ngIf="formAlumno.get('telefono')?.touched && formAlumno.get('telefono')?.errors?.['minlength']" class="text-danger">El telefono debe tener al menos 9 caracteres.</p>
+      <p *ngIf="formAlumno.get('telefono')?.touched && formAlumno.get('telefono')?.errors?.['pattern']" class="text-danger">Solo son validos numeros.</p>
+      <p *ngIf="formAlumno.get('telefono')?.touched && formAlumno.get('telefono')?.errors?.['minlength']" class="text-danger">El telefono debe tener al menos 9 numeros.</p>
     <!-- E_MAIL -->
     <mat-form-field >
         <mat-label>E-mail</mat-label>

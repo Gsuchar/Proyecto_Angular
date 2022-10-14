@@ -41,8 +41,8 @@ export class CursoAltaComponent implements OnInit {
           nombre: new FormControl(data.nombre,[Validators.required]),
           grupo: new FormControl(data.grupo,[Validators.required]),
           profesor: new FormControl(data.profesor,[Validators.required]),
-          fechaInicio: [data.fechaInicio,Validators.required],
-          fechaFin: [data.fechaFin,Validators.required],
+          fechaInicio: [data.fechaInicio],
+          fechaFin: [data.fechaFin],
           //por ahora siempre estaran abiertos a inscripcion
           /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
           inscripcion: [data.inscripcion]
