@@ -3,6 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Alumno, listaAlumnos } from 'src/app/models/alumno_interface';
 import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.component";
 import { MatDialog } from '@angular/material/dialog';
+import { GestionDatosService } from "../../../Servicios/gestion-datos.service";
 
 @Component({
   selector: 'app-alumno-gd',
@@ -11,14 +12,37 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AlumnoGdComponent implements OnInit {
 
-  datosAlumnosBase = listaAlumnos
+
+  alumnos:any;
+  datosAlumnosBase= new Array<Alumno>();
+  /* datosAlumnosBase= new Array<Alumno>(); */
+  /* datosAlumnosBase = listaAlumnos */
 
   DATOS_ALUMNOS = new MatTableDataSource<Alumno>(this.datosAlumnosBase)
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
-  constructor(private dialog: MatDialog) { }
+
+
+  constructor(
+    private dialog: MatDialog,
+    public gestionDatosAlumnos: GestionDatosService
+    ) { }
 
   ngOnInit(): void {
-    this.DATOS_ALUMNOS.data = this.datosAlumnosBase
+    this.DATOS_ALUMNOS.data = this.datosAlumnosBase;
+    //recibo array de objetos desde el servicio
+    this.alumnos = this.gestionDatosAlumnos.retornarAlumnos();
+    //paso de array de objetos a array de datos
+    this.alumnos.forEach((object: any) =>{
+      /* console.log(object); */
+      for (let index = 0; index < object.length; index++) {
+
+        /* console.log(object[index].id) */
+       this.datosAlumnosBase.push(object[index])
+      }
+
+
+    });
+
   }
 
   editar(element:any){
@@ -59,16 +83,24 @@ export class AlumnoGdComponent implements OnInit {
         }
     ).beforeClosed().subscribe((res: Alumno) => {
       //console.log(res);
+
+      let chk = this.datosAlumnosBase.length+1
       if (res!=undefined) {
         this.datosAlumnosBase.push(
           {
             ...res,
             //Parche feo momentaño para asignar "id visual"
-            id:this.datosAlumnosBase.length+1
+
+            /* id:this.datosAlumnosBase.length+1 */
+            id:chk
           }
        )
 
        this.DATOS_ALUMNOS.data = this.datosAlumnosBase
+       console.log('atosAlumnosBase==>  '+this.datosAlumnosBase)
+
+       GestionDatosService.listaAlumnos= this.datosAlumnosBase
+       console.log(GestionDatosService.listaAlumnos)
       }
     })
   }

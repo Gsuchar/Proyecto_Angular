@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+
 import { MatTableModule } from '@angular/material/table';
 
 import { AppComponent } from './app.component';
@@ -31,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
 
 
 
