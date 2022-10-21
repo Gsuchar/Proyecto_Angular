@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Alumno } from '../models/alumno_interface';
 import { Curso } from '../models/curso_interface';
@@ -6,11 +6,11 @@ import { Curso } from '../models/curso_interface';
 @Injectable({
   providedIn: 'root'
 })
-export class GestionDatosService {
+export class GestionDatosService implements OnInit, OnDestroy {
 
 
   datosAlumnos: Alumno[];
-  datosAlumnosSubject: BehaviorSubject<Alumno[]>
+  datosAlumnosSubject$: BehaviorSubject<Alumno[]>
     /* datosAlumnos = listaAlumnos; */
 
   /* datosAlumnos = listaAlumnos; */
@@ -63,8 +63,11 @@ export class GestionDatosService {
 
       },
     ],
-    this.datosAlumnosSubject = new BehaviorSubject(this.datosAlumnos)
+    this.datosAlumnosSubject$ = new BehaviorSubject(this.datosAlumnos)
    }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   /* retornarAlumnos(){
     return[
@@ -72,15 +75,20 @@ export class GestionDatosService {
     ]
   } */
 
+  ngOnDestroy() {
+    this.datosAlumnosSubject$.unsubscribe();
+  }
+
+
   obtenerAlumnos():Observable<Alumno[]>{
-    return this.datosAlumnosSubject.asObservable();
+    return this.datosAlumnosSubject$.asObservable();
   }
 
   agregarAlumnos(alumno: Alumno){
     this.datosAlumnos.push(alumno);
     console.log('antes dle NEX>>>> '+ this.datosAlumnos[this.datosAlumnos.length-1].id)
-    this.datosAlumnosSubject.next(this.datosAlumnos);
-    this.datosAlumnosSubject.forEach(elem => {
+    this.datosAlumnosSubject$.next(this.datosAlumnos);
+    this.datosAlumnosSubject$.forEach(elem => {
       console.log('DATOS DL SUBJET LUGO DEL NEX>>>> '+ elem[elem.length-1].id)
 
     });

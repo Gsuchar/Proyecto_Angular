@@ -5,6 +5,7 @@ import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.compon
 import { MatDialog } from '@angular/material/dialog';
 import { GestionDatosService } from "../../../Servicios/gestion-datos.service";
 import { MaxLengthValidator } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alumno-gd',
@@ -14,7 +15,7 @@ import { MaxLengthValidator } from '@angular/forms';
 export class AlumnoGdComponent implements OnInit {
 
 
-  alumnos:any;
+  alumnos$!: Observable<Alumno[]>
   datosAlumnosBase= new Array<Alumno>();
   /* datosAlumnosBase= new Array<Alumno>(); */
   /* datosAlumnosBase = listaAlumnos */
@@ -32,10 +33,10 @@ export class AlumnoGdComponent implements OnInit {
     this.datosAlumnos.data = this.datosAlumnosBase;
 
     //recibo array de objetos desde el servicio
-    this.alumnos = this.gestionDatosServiceAlumnos.obtenerAlumnos();
+    this.alumnos$ = this.gestionDatosServiceAlumnos.obtenerAlumnos();
     //paso de array de objetos a array de datos
-    console.log('acaaaaaaaaaa==  '+this.alumnos)
-    this.alumnos.forEach((object: any) =>{
+    console.log('acaaaaaaaaaa==  '+this.alumnos$)
+    this.alumnos$.forEach((object: any) =>{
       console.log(object);
       for (let index = 0; index < object.length; index++) {
 
@@ -47,6 +48,9 @@ export class AlumnoGdComponent implements OnInit {
     });
 
   }
+
+
+
 
   editar(element:any){
     //console.log(element);
