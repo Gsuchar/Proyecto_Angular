@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AlumnoGdComponent } from './Componentes/gestionDatos/alumno-gd/alumno-gd.component';
+import { CursoGdComponent } from './Componentes/gestionDatos/curso-gd/curso-gd.component';
 
 const routes: Routes = [
   //aca asigno ruteo
-  { path: 'alumnos', component: AlumnoGdComponent }
+  /* { path: '', component: AlumnoGdComponent }, */
+  { path: 'alumnos', component: AlumnoGdComponent },
+  { path: 'cursos', component: CursoGdComponent }
 ];
 
 @NgModule({

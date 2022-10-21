@@ -17,6 +17,7 @@ import { AlumnoGdComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-g
 import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-new/alumno-alta/alumno-alta.component";
 import { ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
   declarations: [
     AppComponent,
