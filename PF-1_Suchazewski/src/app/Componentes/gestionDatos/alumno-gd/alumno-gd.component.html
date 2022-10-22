@@ -19,7 +19,7 @@
   </div>
 
   <div class="">
-    <table mat-table [dataSource]="datosAlumnos" class="col-md-12 mat-elevation-z8" matSort>
+    <table mat-table [dataSource]="alumnos$" class="col-md-12 mat-elevation-z8" matSort>
       <!-- 'id' -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -64,7 +64,7 @@
       <tr mat-row *matRowDef="let row; columns:AlumnosbCols"></tr>
     </table>
 
-    <p>{{datosAlumnosBase | json}}</p>
+    <p>{{alumnos$ | async | json}}</p>
 
 
   </div>

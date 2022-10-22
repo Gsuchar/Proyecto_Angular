@@ -6,11 +6,11 @@ import { Curso } from '../models/curso_interface';
 @Injectable({
   providedIn: 'root'
 })
-export class GestionDatosService implements OnInit, OnDestroy {
+export class GestionDatosService  {
 
 
   datosAlumnos: Alumno[];
-  datosAlumnosSubject$: BehaviorSubject<Alumno[]>
+  private datosAlumnosSubject$: BehaviorSubject<Alumno[]>
     /* datosAlumnos = listaAlumnos; */
 
   /* datosAlumnos = listaAlumnos; */
@@ -65,33 +65,23 @@ export class GestionDatosService implements OnInit, OnDestroy {
     ],
     this.datosAlumnosSubject$ = new BehaviorSubject(this.datosAlumnos)
    }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
-  /* retornarAlumnos(){
-    return[
-      this.datosAlumnos
-    ]
-  } */
+
 
   ngOnDestroy() {
     this.datosAlumnosSubject$.unsubscribe();
   }
 
 
-  obtenerAlumnos():Observable<Alumno[]>{
+  obtenerAlumnos$():Observable<Alumno[]>{
     return this.datosAlumnosSubject$.asObservable();
   }
 
   agregarAlumnos(alumno: Alumno){
     this.datosAlumnos.push(alumno);
-    console.log('antes dle NEX>>>> '+ this.datosAlumnos[this.datosAlumnos.length-1].id)
+    /* console.log('antes dle NEXT>>>> '+ this.datosAlumnos) */
     this.datosAlumnosSubject$.next(this.datosAlumnos);
-    this.datosAlumnosSubject$.forEach(elem => {
-      console.log('DATOS DL SUBJET LUGO DEL NEX>>>> '+ elem[elem.length-1].id)
 
-    });
   }
 
 }

@@ -5,7 +5,7 @@ import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.compon
 import { MatDialog } from '@angular/material/dialog';
 import { GestionDatosService } from "../../../Servicios/gestion-datos.service";
 import { MaxLengthValidator } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { last, lastValueFrom, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-alumno-gd',
@@ -20,7 +20,7 @@ export class AlumnoGdComponent implements OnInit {
   /* datosAlumnosBase= new Array<Alumno>(); */
   /* datosAlumnosBase = listaAlumnos */
 
-  datosAlumnos = new MatTableDataSource<Alumno>(this.datosAlumnosBase)
+  datosAlumnosLista = new MatTableDataSource<Alumno>(this.datosAlumnosBase)
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
 
 
@@ -30,27 +30,23 @@ export class AlumnoGdComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.datosAlumnos.data = this.datosAlumnosBase;
+    this.datosAlumnosLista.data = this.datosAlumnosBase;
 
     //recibo array de objetos desde el servicio
-    this.alumnos$ = this.gestionDatosServiceAlumnos.obtenerAlumnos();
+    this.alumnos$ = this.gestionDatosServiceAlumnos.obtenerAlumnos$();
     //paso de array de objetos a array de datos
-    console.log('acaaaaaaaaaa==  '+this.alumnos$)
-    this.alumnos$.forEach((object: any) =>{
+    /* this.alumnos$.forEach((object: any) =>{
       console.log(object);
       for (let index = 0; index < object.length; index++) {
 
-        /* console.log(object[index].id) */
+
        this.datosAlumnosBase.push(object[index])
       }
 
 
-    });
+    }); */
 
   }
-
-
-
 
   editar(element:any){
     //console.log(element);
@@ -68,20 +64,20 @@ export class AlumnoGdComponent implements OnInit {
              found.email = res.email
       }
       //console.log(found);
-     }).unsubscribe
+     })
 
   }
 
 
   filtroAlumno(event:Event){
     const userData = (event.target as HTMLInputElement).value;
-    this.datosAlumnos.filter= userData.trim().toLocaleLowerCase();
+    this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase();
   }
 
   DeleteAlumno(id: number) {
     let position = this.datosAlumnosBase.findIndex(listaAlumnos => listaAlumnos.id == id)
     this.datosAlumnosBase.splice(position, 1)
-    this.datosAlumnos.data = this.datosAlumnosBase
+    this.datosAlumnosLista.data = this.datosAlumnosBase
   }
 
   openDialog() {
@@ -91,24 +87,23 @@ export class AlumnoGdComponent implements OnInit {
         //height: '500px',
         }
     ).beforeClosed().subscribe((res: Alumno) => {
+      //ARREGLAR ID
       let chk = this.datosAlumnosBase.length+1
       if (res!=undefined) {
-         this.datosAlumnosBase.push(
-          {
-            ...res,
-            id:chk
-          }
-
-       );
+        let ultiAlumno = {
+          ...res,
+          id:chk
+        }
 
 
-      this.datosAlumnos.data = this.datosAlumnosBase
-      //PASO VALORES AL SUBJECT DLE SERVICIO
-      /* console.log(this.datosAlumnosBase[this.datosAlumnosBase.length-1]) */
-      const ultiAlumno = this.datosAlumnosBase[this.datosAlumnosBase.length-1]
-      this.gestionDatosServiceAlumnos.agregarAlumnos(ultiAlumno);
+        //PASO VALORES AL SUBJECT DLE SERVICIO
+        this.gestionDatosServiceAlumnos.agregarAlumnos(ultiAlumno);
 
-      }
+        this.datosAlumnosLista.data = this.datosAlumnosBase
+
+
+
+    }
     })
   }
 /* Llave fin*/
