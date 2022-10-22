@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Alumno } from '../models/alumno_interface';
 import { Curso } from '../models/curso_interface';
 
@@ -9,7 +9,7 @@ import { Curso } from '../models/curso_interface';
 export class GestionDatosService  {
 
 
-  datosAlumnos: Alumno[];
+  private datosAlumnos: Alumno[];
   private datosAlumnosSubject$: BehaviorSubject<Alumno[]>
     /* datosAlumnos = listaAlumnos; */
 
@@ -76,7 +76,11 @@ export class GestionDatosService  {
   obtenerAlumnos$():Observable<Alumno[]>{
     return this.datosAlumnosSubject$.asObservable();
   }
-
+  /* obtenerAlumnoId$(idAlumno:number):Observable<Alumno[]>{
+    return this.obtenerAlumnos$().pipe(
+      map((alumnoData:Alumno[])=> alumnoData.filter((alumnoID: Alumno)=> alumnoID.id === idAlumno))
+    )
+  } */
   agregarAlumnos(alumno: Alumno){
     this.datosAlumnos.push(alumno);
     /* console.log('antes dle NEXT>>>> '+ this.datosAlumnos) */
@@ -84,4 +88,15 @@ export class GestionDatosService  {
 
   }
 
+
+  editarAlumnoS(datosAlumnoEditar:Alumno){
+    let indice = this.datosAlumnos.findIndex((a: Alumno)=> a.id ===datosAlumnoEditar.id)
+    if(indice > -1){
+      this.datosAlumnos[indice] = datosAlumnoEditar
+    }
+    this.datosAlumnosSubject$.next(this.datosAlumnos)
+  }
+
 }
+
+

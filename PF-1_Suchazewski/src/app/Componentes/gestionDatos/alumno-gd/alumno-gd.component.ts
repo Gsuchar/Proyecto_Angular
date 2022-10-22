@@ -30,42 +30,24 @@ export class AlumnoGdComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.datosAlumnosLista.data = this.datosAlumnosBase;
-
     //recibo array de objetos desde el servicio
     this.alumnos$ = this.gestionDatosServiceAlumnos.obtenerAlumnos$();
-    //paso de array de objetos a array de datos
-    /* this.alumnos$.forEach((object: any) =>{
-      console.log(object);
-      for (let index = 0; index < object.length; index++) {
-
-
-       this.datosAlumnosBase.push(object[index])
-      }
-
-
-    }); */
 
   }
 
   editar(element:any){
-    //console.log(element);
-    /* let dialog = */ this.dialog.open(AlumnoAltaComponent, {
-      width: '250px',
-      //height: '500px',
-      /*mandoo datos al dialog segun el que quise editar*/
-      data: element
-    }).beforeClosed().subscribe((res: Alumno) => {
-      let found = this.datosAlumnosBase.find(aluMno=>aluMno.id == res.id);
-      if(found){
-             found.nombre = res.nombre;
-             found.apellido = res.apellido;
-             found.telefono = res.telefono;
-             found.email = res.email
-      }
-      //console.log(found);
-     })
 
+    this.dialog.open(AlumnoAltaComponent, {
+
+      width: '250px',
+      data: element
+
+    }).beforeClosed().subscribe(
+      (res: Alumno) => {
+
+        this.gestionDatosServiceAlumnos.editarAlumnoS(res)
+
+      })
   }
 
 
@@ -80,13 +62,17 @@ export class AlumnoGdComponent implements OnInit {
     this.datosAlumnosLista.data = this.datosAlumnosBase
   }
 
-  openDialog() {
-    /* let dialog =  */this.dialog.open(
+  nuevoAlumno() {
+    this.dialog.open(
+
       AlumnoAltaComponent, {
-        width: '250px',
-        //height: '500px',
-        }
-    ).beforeClosed().subscribe((res: Alumno) => {
+
+        width: '250px'
+
+      }
+    ).beforeClosed().subscribe(
+      (res: Alumno) => {
+
       //ARREGLAR ID
       let chk = this.datosAlumnosBase.length+1
       if (res!=undefined) {
@@ -94,16 +80,11 @@ export class AlumnoGdComponent implements OnInit {
           ...res,
           id:chk
         }
-
-
         //PASO VALORES AL SUBJECT DLE SERVICIO
         this.gestionDatosServiceAlumnos.agregarAlumnos(ultiAlumno);
 
-        this.datosAlumnosLista.data = this.datosAlumnosBase
-
-
-
-    }
+        /* this.datosAlumnosLista.data = this.datosAlumnosBase */
+      }
     })
   }
 /* Llave fin*/
