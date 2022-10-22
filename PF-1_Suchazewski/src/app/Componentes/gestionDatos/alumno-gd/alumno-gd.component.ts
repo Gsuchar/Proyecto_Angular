@@ -32,7 +32,7 @@ export class AlumnoGdComponent implements OnInit {
   ngOnInit(): void {
     //recibo array de objetos desde el servicio
     this.alumnos$ = this.gestionDatosServiceAlumnos.obtenerAlumnos$();
-
+    this.datosAlumnosBase=this.datosAlumnosLista.data  ;
   }
 
   editar(element:any){
@@ -45,7 +45,7 @@ export class AlumnoGdComponent implements OnInit {
     }).beforeClosed().subscribe(
       (res: Alumno) => {
 
-        this.gestionDatosServiceAlumnos.editarAlumnoS(res)
+        this.gestionDatosServiceAlumnos.editarAlumno(res)
 
       })
   }
@@ -56,10 +56,8 @@ export class AlumnoGdComponent implements OnInit {
     this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase();
   }
 
-  DeleteAlumno(id: number) {
-    let position = this.datosAlumnosBase.findIndex(listaAlumnos => listaAlumnos.id == id)
-    this.datosAlumnosBase.splice(position, 1)
-    this.datosAlumnosLista.data = this.datosAlumnosBase
+  DeleteAlumno(deleteAlumnoId: number) {
+    this.gestionDatosServiceAlumnos.deleteAlumno(deleteAlumnoId)
   }
 
   nuevoAlumno() {
@@ -81,7 +79,7 @@ export class AlumnoGdComponent implements OnInit {
           id:chk
         }
         //PASO VALORES AL SUBJECT DLE SERVICIO
-        this.gestionDatosServiceAlumnos.agregarAlumnos(ultiAlumno);
+        this.gestionDatosServiceAlumnos.agregarAlumno(ultiAlumno);
 
         /* this.datosAlumnosLista.data = this.datosAlumnosBase */
       }

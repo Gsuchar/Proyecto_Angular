@@ -68,10 +68,10 @@ export class GestionDatosService  {
 
 
 
-  ngOnDestroy() {
+  /* ngOnDestroy() {
     this.datosAlumnosSubject$.unsubscribe();
   }
-
+ */
 
   obtenerAlumnos$():Observable<Alumno[]>{
     return this.datosAlumnosSubject$.asObservable();
@@ -81,7 +81,7 @@ export class GestionDatosService  {
       map((alumnoData:Alumno[])=> alumnoData.filter((alumnoID: Alumno)=> alumnoID.id === idAlumno))
     )
   } */
-  agregarAlumnos(alumno: Alumno){
+  agregarAlumno(alumno: Alumno){
     this.datosAlumnos.push(alumno);
     /* console.log('antes dle NEXT>>>> '+ this.datosAlumnos) */
     this.datosAlumnosSubject$.next(this.datosAlumnos);
@@ -89,10 +89,18 @@ export class GestionDatosService  {
   }
 
 
-  editarAlumnoS(datosAlumnoEditar:Alumno){
-    let indice = this.datosAlumnos.findIndex((a: Alumno)=> a.id ===datosAlumnoEditar.id)
+  editarAlumno(datosAlumnoEditar:Alumno){
+    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===datosAlumnoEditar.id)
     if(indice > -1){
       this.datosAlumnos[indice] = datosAlumnoEditar
+    }
+    this.datosAlumnosSubject$.next(this.datosAlumnos)
+  }
+
+  deleteAlumno(idCursoBorrar:number){
+    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===idCursoBorrar)
+    if(indice > -1){
+      this.datosAlumnos.splice(indice, 1)
     }
     this.datosAlumnosSubject$.next(this.datosAlumnos)
   }
