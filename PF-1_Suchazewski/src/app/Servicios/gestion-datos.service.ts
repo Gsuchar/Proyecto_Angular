@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Alumno } from '../models/alumno_interface';
 import { Curso } from '../models/curso_interface';
@@ -10,10 +10,7 @@ export class GestionDatosService  {
 
 
   private datosAlumnos: Alumno[];
-  private datosAlumnosSubject$: BehaviorSubject<Alumno[]>
-    /* datosAlumnos = listaAlumnos; */
-
-  /* datosAlumnos = listaAlumnos; */
+  private datosAlumnosSubject$: BehaviorSubject<Alumno[]>;
 
   constructor() {
     this.datosAlumnos= [
@@ -63,36 +60,32 @@ export class GestionDatosService  {
 
       },
     ],
-    this.datosAlumnosSubject$ = new BehaviorSubject(this.datosAlumnos)
+    this.datosAlumnosSubject$ = new BehaviorSubject(this.datosAlumnos);
    }
 
-
-
-  /* ngOnDestroy() {
-    this.datosAlumnosSubject$.unsubscribe();
-  }
- */
-
-  obtenerAlumnos$():Observable<Alumno[]>{
+   obtenerAlumnos$():Observable<Alumno[]>{
     return this.datosAlumnosSubject$.asObservable();
   }
-  /* obtenerAlumnoId$(idAlumno:number):Observable<Alumno[]>{
-    return this.obtenerAlumnos$().pipe(
-      map((alumnoData:Alumno[])=> alumnoData.filter((alumnoID: Alumno)=> alumnoID.id === idAlumno))
-    )
-  } */
-  agregarAlumno(alumno: Alumno){
-    this.datosAlumnos.push(alumno);
-    /* console.log('antes dle NEXT>>>> '+ this.datosAlumnos) */
-    this.datosAlumnosSubject$.next(this.datosAlumnos);
 
+  agregarAlumno(alumno: Alumno){
+    //PARCHE MOMENTAÑO DE ASIGNACION DE ID SEGUN ARRAY ALUMNOS
+    let seteoID = this.datosAlumnos.length+1
+    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id === seteoID);
+    console.log('datos INDICE>> '+indice)
+    if(indice > -1){
+
+      this.datosAlumnos[indice].id = seteoID ? seteoID++ : seteoID;
+      /* seteoID++ */
+    }
+
+    this.datosAlumnos.push({...alumno, id:seteoID});
+    this.datosAlumnosSubject$.next(this.datosAlumnos);
   }
 
-
   editarAlumno(datosAlumnoEditar:Alumno){
-    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===datosAlumnoEditar.id)
+    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id === datosAlumnoEditar.id);
     if(indice > -1){
-      this.datosAlumnos[indice] = datosAlumnoEditar
+      this.datosAlumnos[indice] = datosAlumnoEditar;
     }
     this.datosAlumnosSubject$.next(this.datosAlumnos)
   }
@@ -100,9 +93,22 @@ export class GestionDatosService  {
   deleteAlumno(idCursoBorrar:number){
     let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===idCursoBorrar)
     if(indice > -1){
-      this.datosAlumnos.splice(indice, 1)
+      this.datosAlumnos.splice(indice, 1);
     }
-    this.datosAlumnosSubject$.next(this.datosAlumnos)
+    this.datosAlumnosSubject$.next(this.datosAlumnos);
+  }
+
+  filtroAlumno(event:string){
+   /*  const userData = (event.target as HTMLInputElement).value */;
+    let indice = this.datosAlumnos.findIndex((AlumnoNOmbre: Alumno)=> AlumnoNOmbre.nombre ===event);
+    if(indice > -1){
+      this.datosAlumnos[indice].nombre = event;
+    }
+    return this.datosAlumnos[indice].nombre;
+
+
+    /* const userData = (event.target as HTMLInputElement).value;
+    this.datosAlumnos.filter= userData.trim().toLocaleLowerCase(); */
   }
 
 }

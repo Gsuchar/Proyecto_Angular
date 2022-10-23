@@ -35,7 +35,7 @@ export class AlumnoGdComponent implements OnInit {
     this.datosAlumnosBase=this.datosAlumnosLista.data  ;
   }
 
-  editar(element:any){
+  editarAlumno(element:any){
 
     this.dialog.open(AlumnoAltaComponent, {
 
@@ -50,10 +50,11 @@ export class AlumnoGdComponent implements OnInit {
       })
   }
 
-
   filtroAlumno(event:Event){
     const userData = (event.target as HTMLInputElement).value;
-    this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase();
+    this.gestionDatosServiceAlumnos.filtroAlumno(userData);
+    /* this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase(); */
+    return event
   }
 
   DeleteAlumno(deleteAlumnoId: number) {
@@ -72,16 +73,16 @@ export class AlumnoGdComponent implements OnInit {
       (res: Alumno) => {
 
       //ARREGLAR ID
-      let chk = this.datosAlumnosBase.length+1
+      /* let chk = this.datosAlumnosBase.length+1 */
       if (res!=undefined) {
         let ultiAlumno = {
           ...res,
-          id:chk
+          /* id:chk */
         }
         //PASO VALORES AL SUBJECT DLE SERVICIO
         this.gestionDatosServiceAlumnos.agregarAlumno(ultiAlumno);
 
-        /* this.datosAlumnosLista.data = this.datosAlumnosBase */
+         this.datosAlumnosLista.data = this.datosAlumnosBase
       }
     })
   }
