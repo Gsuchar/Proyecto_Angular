@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Alumno } from '../models/alumno_interface';
-import { Curso } from '../models/curso_interface';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class GestionDatosService  {
+export class alumnosDataService  {
 
 
-  private datosAlumnos: Alumno[];
+  /* private */ datosAlumnos: Alumno[];
   private datosAlumnosSubject$: BehaviorSubject<Alumno[]>;
 
   constructor() {
@@ -73,8 +73,10 @@ export class GestionDatosService  {
     let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id === seteoID);
     console.log('datos INDICE>> '+indice)
     if(indice > -1){
-
-      this.datosAlumnos[indice].id = seteoID ? seteoID++ : seteoID;
+      while (this.datosAlumnos[indice].id > seteoID+1 && this.datosAlumnos[indice].id != seteoID ) {
+        seteoID++
+      }
+      /* this.datosAlumnos[indice].id = seteoID ? seteoID++ : seteoID; */
       /* seteoID++ */
     }
 
@@ -99,17 +101,26 @@ export class GestionDatosService  {
   }
 
   filtroAlumno(event:string){
-   /*  const userData = (event.target as HTMLInputElement).value */;
-    let indice = this.datosAlumnos.findIndex((AlumnoNOmbre: Alumno)=> AlumnoNOmbre.nombre ===event);
+
+      /* this.datosAlumnos.filter=
+ */
+
+
+  }
+
+  /* filtroAlumno(event:string){
+    const userData = (event.target as HTMLInputElement).value */;
+
+    /* let indice = this.datosAlumnos.findIndex((AlumnoNOmbre: Alumno)=> AlumnoNOmbre.nombre ===event);
     if(indice > -1){
       this.datosAlumnos[indice].nombre = event;
     }
     return this.datosAlumnos[indice].nombre;
-
+ */
 
     /* const userData = (event.target as HTMLInputElement).value;
-    this.datosAlumnos.filter= userData.trim().toLocaleLowerCase(); */
-  }
+    this.datosAlumnos.filter= userData.trim().toLocaleLowerCase();
+  } */
 
 }
 

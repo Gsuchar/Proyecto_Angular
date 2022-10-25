@@ -49,7 +49,6 @@ export class AlumnoAltaComponent implements OnInit {
   }
 
   guardar() {
-    //console.log(this.formAlumno);
     if(this.formAlumno.valid){
     this.dialogRef.close(this.formAlumno.value)
     }

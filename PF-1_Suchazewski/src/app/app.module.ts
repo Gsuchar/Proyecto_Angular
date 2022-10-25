@@ -8,14 +8,19 @@ import { MatTableModule } from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { ToolbarHeaderComponent } from "./Componentes/layout/toolbar-header/toolbar-header.component";
-import { SideMenuComponent } from "./Componentes/layout/side-menu/side-menu.component";
-import { MainHomeComponent } from "./Componentes/layout/main-home/main-home.component";
+import { ToolbarHeaderComponent } from "./layout/toolbar-header/toolbar-header.component";
+import { SideMenuComponent } from "./layout/side-menu/side-menu.component";
+import { MainHomeComponent } from "./layout/main-home/main-home.component";
 import { CursoGdComponent } from "./Componentes/gestionDatos/curso-gd/curso-gd.component";
 import { CursoAltaComponent } from './Componentes/gestionDatos/curso-gd/curso-new/curso-alta/curso-alta.component';
-import { AlumnoGdComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-gd.component";
-import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-new/alumno-alta/alumno-alta.component";
-import { ReactiveFormsModule } from '@angular/forms';
+/* import { AlumnoGdComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-gd.component";
+import { AlumnoAltaComponent } from "./Componentes/gestionDatos/alumno-gd/alumno-new/alumno-alta/alumno-alta.component"; */
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { AlumnosModule } from "./alumnos/alumnos.module";
+
+
+
 
 
 @NgModule({
@@ -26,8 +31,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     MainHomeComponent,
     CursoGdComponent,
     CursoAltaComponent,
-    AlumnoGdComponent,
-    AlumnoAltaComponent
+   /*  AlumnoGdComponent,
+    AlumnoAltaComponent, */
+
+
+
+
   ],
   imports: [
     BrowserModule,
@@ -35,9 +44,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    AppRoutingModule
-
-
+    AppRoutingModule,
+    FormsModule,
+    MatTableModule,
+    AlumnosModule
 
 
 

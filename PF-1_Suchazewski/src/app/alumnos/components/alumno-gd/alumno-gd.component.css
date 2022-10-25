@@ -26,11 +26,15 @@ h2{
     margin: 0 0 0 5%;
   }
 }
-
-
+/* th.mat-header-cell:last-of-type{
+  padding-right: 15px;
+}
+th.mat-header-cell:first-of-type{
+  padding-left: 15px;
+}
 td.mat-cell:last-of-type, td.mat-cell:last-of-type{
-  padding-right: 10px;
+  padding-right: 15px;
 }
 td.mat-cell:first-of-type{
-  padding-left: 10px;
-}
+  padding-left: 15px;
+} */
