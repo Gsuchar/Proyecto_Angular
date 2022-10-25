@@ -15,6 +15,9 @@ import { MatMenu } from "@angular/material/menu";
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import {CdkTableModule} from '@angular/cdk/table';
+import {MatPaginator} from '@angular/material/paginator';
+/* import { MatTableFilterModule } from '@angular/material/';*/
+
 @NgModule({
     imports:[
       CommonModule,
@@ -32,6 +35,8 @@ import {CdkTableModule} from '@angular/cdk/table';
       MatListModule,
 
 
+
+
     ],
     exports:[
       CommonModule,
@@ -46,7 +51,8 @@ import {CdkTableModule} from '@angular/cdk/table';
       ReactiveFormsModule,
       MatDialogModule,
       CdkTableModule,
-      MatListModule
+      MatListModule,
+
 
 
     ]

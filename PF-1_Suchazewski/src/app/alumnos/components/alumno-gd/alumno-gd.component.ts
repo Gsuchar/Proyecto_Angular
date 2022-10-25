@@ -4,7 +4,9 @@ import { Alumno } from 'src/app/alumnos/models/alumno_interface';
 import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.component";
 import { MatDialog } from '@angular/material/dialog';
 import { alumnosDataService } from "../../services/alumnosData.service";
-import { Observable } from 'rxjs';
+import { map, Observable  } from 'rxjs';
+
+
 
 
 @Component({
@@ -14,13 +16,13 @@ import { Observable } from 'rxjs';
 })
 export class AlumnoGdComponent implements OnInit {
 
-  /* alumnos$!: Observable<Alumno[]> */
+  //DESAFIO
   alumnos$!: Observable<Alumno[]> ;
+
   //Datos de Tabla visual
-  //datosAlumnosBase= new Array<Alumno>();
-  //datosAlumnosLista = new MatTableDataSource<Alumno>(this.datosAlumnosBase)
+  datosAlumnos = [];
+  datosAlumnosLista = new MatTableDataSource<Alumno>(this.datosAlumnos)
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
-  filterpost='';
 
 
   constructor(
@@ -29,21 +31,12 @@ export class AlumnoGdComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    //Recibo array de objetos desde el servicio
+    //BORRAR SOLO PARA VER COMPORTAMIENTO DEL SERVICIO //DESAFIO
     this.alumnos$ = this.alumnosDataService.obtenerAlumnos$();
-    //Paso datos del servicio para manejarlo visualmente en el componente
-    /* this.datosAlumnosBase = this.gestionDatosServiceAlumnos.datosAlumnos;
-    this.datosAlumnosLista.data = this.datosAlumnosBase; */
 
-    //--------------------------------------------------------------//
-    //SI HAGO LA VISUAL DIRECTO DEL OBSERVABLE
-    //>>>>>>>>>>>>>>> FUNCIONANDO BIEN >>>>>>>>>this.datosAlumnosBase=this.datosAlumnosLista.data  ;
-    //--------------------------------------------------------------//
-
-
-    //--------------------------------------------------------------//
+    //Paso datos del servicio como observable y lo vuelco directo en la data asiganda a la tabla
+    this.alumnosDataService.obtenerAlumnos$().subscribe(alum => this.datosAlumnosLista.data = alum as Alumno[]);
   }
-
 
 
   editarAlumno(element:any){
@@ -53,25 +46,16 @@ export class AlumnoGdComponent implements OnInit {
     }).beforeClosed().subscribe(
       (res: Alumno) => {
         this.alumnosDataService.editarAlumno(res)
-        //Datos de tabla para actualizar visual
-        /* this.datosAlumnosBase = this.gestionDatosServiceAlumnos.datosAlumnos;
-        this.datosAlumnosLista.data = this.datosAlumnosBase; */})
+      })
   }
 
   filtroAlumno(event:Event){
     const userData = (event.target as HTMLInputElement).value;
-    /* this.gestionDatosServiceAlumnos.filtroAlumno(userData) */
-
-
-    /* this.datosAlumnosBase = this.gestionDatosServiceAlumnos.datosAlumnos
-    this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase(); */
+    this.datosAlumnosLista.filter= userData.trim().toLocaleLowerCase();
   }
 
   DeleteAlumno(deleteAlumnoId: number) {
-    this.alumnosDataService.deleteAlumno(deleteAlumnoId)
-    //Datos de tabla para actualizar visual
-    /* this.datosAlumnosBase = this.gestionDatosServiceAlumnos.datosAlumnos;
-    this.datosAlumnosLista.data = this.datosAlumnosBase; */
+    this.alumnosDataService.deleteAlumno(deleteAlumnoId);
   }
 
   nuevoAlumno() {
@@ -88,7 +72,6 @@ export class AlumnoGdComponent implements OnInit {
         //PASO VALORES AL SUBJECT DLE SERVICIO
         this.alumnosDataService.agregarAlumno(ultiAlumno);
 
-        /*this.datosAlumnosLista.data = this.datosAlumnosBase */
       }
     })
   }

@@ -5,6 +5,8 @@ import { AlumnoAltaComponent } from "./components/alumno-gd/alumno-new/alumno-al
 import { alumnosDataService } from "./services/alumnosData.service";
 import { MaterialModule } from '../material.module';
 import { AlumnosRoutingModule } from './alumnos-routing.module';
+//REVISAR
+import { MatTableFilterModule } from 'mat-table-filter'
 
 
 
@@ -16,7 +18,9 @@ import { AlumnosRoutingModule } from './alumnos-routing.module';
   imports: [
     CommonModule,
     AlumnosRoutingModule,
-    MaterialModule
+    MaterialModule,
+    //revisar
+    MatTableFilterModule
   ],
   providers:[
     alumnosDataService

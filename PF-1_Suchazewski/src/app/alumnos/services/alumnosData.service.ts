@@ -100,28 +100,6 @@ export class alumnosDataService  {
     this.datosAlumnosSubject$.next(this.datosAlumnos);
   }
 
-  filtroAlumno(event:string){
-
-      /* this.datosAlumnos.filter=
- */
-
-
-  }
-
-  /* filtroAlumno(event:string){
-    const userData = (event.target as HTMLInputElement).value */;
-
-    /* let indice = this.datosAlumnos.findIndex((AlumnoNOmbre: Alumno)=> AlumnoNOmbre.nombre ===event);
-    if(indice > -1){
-      this.datosAlumnos[indice].nombre = event;
-    }
-    return this.datosAlumnos[indice].nombre;
- */
-
-    /* const userData = (event.target as HTMLInputElement).value;
-    this.datosAlumnos.filter= userData.trim().toLocaleLowerCase();
-  } */
-
 }
 
 

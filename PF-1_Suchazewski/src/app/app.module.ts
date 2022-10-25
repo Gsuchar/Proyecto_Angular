@@ -47,7 +47,7 @@ import { AlumnosModule } from "./alumnos/alumnos.module";
     AppRoutingModule,
     FormsModule,
     MatTableModule,
-    AlumnosModule
+
 
 
 
