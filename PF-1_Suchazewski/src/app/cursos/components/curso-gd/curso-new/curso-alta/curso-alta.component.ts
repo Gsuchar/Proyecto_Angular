@@ -1,6 +1,6 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-curso-alta',
@@ -9,7 +9,7 @@ import { MatDialogRef, MatDialog, MAT_DIALOG_DATA } from '@angular/material/dial
 })
 export class CursoAltaComponent implements OnInit {
   /* aca asigno nombre de titulo dle dialog q quiero mostrar para luego cambiar segun la accion a realizaar*/
-  public title='Alta curso';
+  public title='Alta Curso';
   formCurso: FormGroup;
 
   constructor(
@@ -34,7 +34,7 @@ export class CursoAltaComponent implements OnInit {
     console.log(data);
     /* si llega info actuo, si no no hace nada*/
     if(data){
-      this.title = 'Editar curso';
+      this.title = 'Editar Curso';
       this.formCurso= this.fb.group(
         {
           id:[data.id],
@@ -49,6 +49,7 @@ export class CursoAltaComponent implements OnInit {
         }
       )
     }
+   //Fin constructor
   }
 
   ngOnInit(): void {

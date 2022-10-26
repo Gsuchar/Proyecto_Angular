@@ -6,7 +6,7 @@ import { Alumno } from '../models/alumno_interface';
 @Injectable({
   providedIn: 'root'
 })
-export class alumnosDataService  {
+export class AlumnosDataService {
 
 
   /* private */ datosAlumnos: Alumno[];
@@ -71,7 +71,7 @@ export class alumnosDataService  {
     //PARCHE MOMENTAÑO DE ASIGNACION DE ID SEGUN ARRAY ALUMNOS
     let seteoID = this.datosAlumnos.length+1
     let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id === seteoID);
-    console.log('datos INDICE>> '+indice)
+    //console.log('datos INDICE>> '+indice)
     if(indice > -1){
       while (this.datosAlumnos[indice].id > seteoID+1 && this.datosAlumnos[indice].id != seteoID ) {
         seteoID++
@@ -92,8 +92,8 @@ export class alumnosDataService  {
     this.datosAlumnosSubject$.next(this.datosAlumnos)
   }
 
-  deleteAlumno(idCursoBorrar:number){
-    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===idCursoBorrar)
+  deleteAlumno(idAlumnoBorrar:number){
+    let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===idAlumnoBorrar)
     if(indice > -1){
       this.datosAlumnos.splice(indice, 1);
     }
@@ -101,5 +101,3 @@ export class alumnosDataService  {
   }
 
 }
-
-

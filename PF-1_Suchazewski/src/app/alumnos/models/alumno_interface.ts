@@ -6,7 +6,7 @@ export interface Alumno{
   email: string
 }
 
-export let listaAlumnos: Alumno[] = [
+/* export let listaAlumnos: Alumno[] = [
   {
       id:1,
       nombre:'Agustina',
@@ -53,3 +53,4 @@ export let listaAlumnos: Alumno[] = [
 
   },
 ]
+ */

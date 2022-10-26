@@ -3,7 +3,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Alumno } from 'src/app/alumnos/models/alumno_interface';
 import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.component";
 import { MatDialog } from '@angular/material/dialog';
-import { alumnosDataService } from "../../services/alumnosData.service";
+import { AlumnosDataService } from "../../services/alumnos-data.service";
 import { map, Observable  } from 'rxjs';
 
 
@@ -27,7 +27,7 @@ export class AlumnoGdComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private alumnosDataService: alumnosDataService
+    private alumnosDataService: AlumnosDataService
     ) { }
 
   ngOnInit(): void {
@@ -35,7 +35,7 @@ export class AlumnoGdComponent implements OnInit {
     this.alumnos$ = this.alumnosDataService.obtenerAlumnos$();
 
     //Paso datos del servicio como observable y lo vuelco directo en la data asiganda a la tabla
-    this.alumnosDataService.obtenerAlumnos$().subscribe(alum => this.datosAlumnosLista.data = alum as Alumno[]);
+    this.alumnosDataService.obtenerAlumnos$().subscribe(alum => this.datosAlumnosLista.data = alum as Alumno[]).unsubscribe;
   }
 
 

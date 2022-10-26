@@ -8,7 +8,7 @@ export interface Curso{
   inscripcion: boolean
 }
 
-export let listaCursos: Curso[] = [
+/* export let listaCursos: Curso[] = [
   {
       id:1,
       nombre:'Angular',
@@ -63,4 +63,4 @@ export let listaCursos: Curso[] = [
       fechaFin: new Date(2022, 9, 31),
       inscripcion: false
   },
-]
+] */

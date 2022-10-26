@@ -1,8 +1,4 @@
-body{background-color: brown;}
-/* table{
-  box-sizing: content-box;
-  min-width: 430px;
-} */
+
 .panel_listas{
   display: flex;
     justify-content: space-between;
