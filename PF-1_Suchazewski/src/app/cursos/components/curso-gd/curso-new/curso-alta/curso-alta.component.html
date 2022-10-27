@@ -2,29 +2,24 @@
 <div mat-dialog-content>
   <form [formGroup]="formCurso" >
     <mat-form-field >
-        <mat-label>Nombre</mat-label>
-        <input matInput  formControlName="nombre" placeholder="Ingrese un nombre">
-      </mat-form-field>
+      <mat-label>Nombre</mat-label>
+      <input matInput  formControlName="nombre" placeholder="Ingrese Nombre">
+    </mat-form-field>
     <mat-form-field >
-        <mat-label>Grupo</mat-label>
-        <input matInput  formControlName="grupo" placeholder="Ingrese un nombre">
-      </mat-form-field>
+      <mat-label>Categoria</mat-label>
+      <input matInput  formControlName="categoria" placeholder="Ingrese Categoria">
+    </mat-form-field>
     <mat-form-field >
-        <mat-label>Profesor</mat-label>
-        <input matInput  formControlName="profesor" placeholder="Ingrese un nombre">
-      </mat-form-field>
+      <mat-label>Habilitado</mat-label>
+
+      <input matInput  formControlName="estado" placeholder="">
+      <!-- <mat-slide-toggle matInput formControlName="estado">222</mat-slide-toggle> -->
+
+    </mat-form-field>
     <mat-form-field >
-        <mat-label>Inicio</mat-label>
-        <input matInput  formControlName="fechaInicio" placeholder="Ingrese un nombre">
-      </mat-form-field>
-    <mat-form-field >
-        <mat-label>Fin</mat-label>
-        <input matInput  formControlName="fechaFin" placeholder="Ingrese un nombre">
-      </mat-form-field>
-    <mat-form-field >
-        <mat-label>Abierto</mat-label>
-        <input matInput  formControlName="inscripcion" placeholder="Ingrese un nombre">
-      </mat-form-field>
+      <mat-label>Descripcion</mat-label>
+      <textarea formControlName="descripcion" matInput placeholder="Ingrese Descripcion."></textarea>
+    </mat-form-field>
   </form>
 </div>
 <div mat-dialog-actions>

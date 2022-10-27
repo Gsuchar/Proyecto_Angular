@@ -1,11 +1,9 @@
 export interface Curso{
   id:number
   nombre: string
-  grupo: string
-  profesor: string
-  fechaInicio: Date
-  fechaFin: Date
-  inscripcion: boolean
+  categoria: string
+  estado: boolean
+  descripcion: string
 }
 
 /* export let listaCursos: Curso[] = [

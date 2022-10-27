@@ -22,7 +22,8 @@ export class CursoGdComponent implements OnInit {
  //Datos de Tabla visual
  datosCursos = [];
  datosCursosLista = new MatTableDataSource<Curso>(this.datosCursos)
- CursosbCols: string [] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','acciones'];
+ /* CursosbCols: string [] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','acciones']; */
+ CursosbCols: string [] = ['id','nombre','categoria','estado','descripcion','acciones'];
 
 
  constructor(

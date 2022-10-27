@@ -17,8 +17,8 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   /* height: 100%; */
   width: 1080px;
-  /*no scrolls*/
-  overflow: hidden;
+  /*no scrolls
+  overflow: hidden;*/
   height: 97%;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
