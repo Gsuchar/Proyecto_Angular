@@ -11,6 +11,7 @@ export class CursoAltaComponent implements OnInit {
   /* aca asigno nombre de titulo dle dialog q quiero mostrar para luego cambiar segun la accion a realizaar*/
   public title='Alta Curso';
   formCurso: FormGroup;
+  check?:false;
 
   constructor(
     public dialogRef: MatDialogRef<CursoAltaComponent>,
@@ -32,7 +33,7 @@ export class CursoAltaComponent implements OnInit {
         id:[''],
         nombre: new FormControl('',[Validators.required]),
         categoria: new FormControl('',[Validators.required]),
-        estado: [true],
+        estado: [false],
         //por ahora siempre estaran abiertos a inscripcion
         /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
         descripcion: new FormControl('',[Validators.required])
@@ -67,8 +68,13 @@ export class CursoAltaComponent implements OnInit {
    if(this.formCurso.valid){
     this.dialogRef.close(this.formCurso.value), console.log(this.formCurso.value)
     }
+  }
+
+  checkSli(){
 
   }
+
+
 }
 
 

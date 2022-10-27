@@ -38,7 +38,12 @@
       <!-- 'profesor' -->
       <ng-container matColumnDef="estado">
         <th mat-header-cell *matHeaderCellDef>ESTADO</th>
-        <td mat-cell *matCellDef="let element">{{element.estado}}</td>
+        <td mat-cell *matCellDef="let element" [ngStyle]="{
+          border: '1px solid red',
+          color: element.estado
+            ? 'hsl(141, 53%, 53%)'
+            : 'hsl(348, 100%, 61%)'
+        }">{{element.estado| estadoCursos}}  </td>
       </ng-container>
       <!-- 'fechaInicio' -->
       <ng-container matColumnDef="descripcion">

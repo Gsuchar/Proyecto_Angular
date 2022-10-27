@@ -6,12 +6,15 @@ import { CursoGdComponent } from './components/curso-gd/curso-gd.component';
 import { CursoAltaComponent } from './components/curso-gd/curso-new/curso-alta/curso-alta.component';
 import { MaterialModule } from "../material.module";
 import { CursosDataService } from './services/cursos-data.service';
+import { EstadoCursosPipe } from './pipes/estado-cursos.pipe';
+
 
 
 @NgModule({
   declarations: [
     CursoGdComponent,
-    CursoAltaComponent
+    CursoAltaComponent,
+    EstadoCursosPipe
   ],
   imports: [
     CommonModule,
