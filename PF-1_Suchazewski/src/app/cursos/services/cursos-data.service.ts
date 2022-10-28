@@ -84,16 +84,18 @@ export class CursosDataService {
     let indice = this.datosCursos.findIndex((CursoBusco: Curso)=> CursoBusco.id === datosCursoEditar.id);
     if(indice > -1){
       this.datosCursos[indice] = datosCursoEditar;
+      this.datosCursosSubject$.next(this.datosCursos)
     }
-    this.datosCursosSubject$.next(this.datosCursos)
+    /* this.datosCursosSubject$.next(this.datosCursos) */
   }
 
   deleteCurso(idCursoBorrar:number){
     let indice = this.datosCursos.findIndex((CursoBusco: Curso)=> CursoBusco.id ===idCursoBorrar)
     if(indice > -1){
       this.datosCursos.splice(indice, 1);
+      this.datosCursosSubject$.next(this.datosCursos);
     }
-    this.datosCursosSubject$.next(this.datosCursos);
+    /* this.datosCursosSubject$.next(this.datosCursos); */
   }
  //Ultima Llave
 }

@@ -88,16 +88,18 @@ export class AlumnosDataService {
     let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id === datosAlumnoEditar.id);
     if(indice > -1){
       this.datosAlumnos[indice] = datosAlumnoEditar;
+      this.datosAlumnosSubject$.next(this.datosAlumnos)
     }
-    this.datosAlumnosSubject$.next(this.datosAlumnos)
+    /* this.datosAlumnosSubject$.next(this.datosAlumnos) */
   }
 
   deleteAlumno(idAlumnoBorrar:number){
     let indice = this.datosAlumnos.findIndex((AlumnoBusco: Alumno)=> AlumnoBusco.id ===idAlumnoBorrar)
     if(indice > -1){
       this.datosAlumnos.splice(indice, 1);
+      this.datosAlumnosSubject$.next(this.datosAlumnos);
     }
-    this.datosAlumnosSubject$.next(this.datosAlumnos);
+    /* this.datosAlumnosSubject$.next(this.datosAlumnos); */
   }
 
 }
