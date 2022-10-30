@@ -5,21 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { ToolbarHeaderComponent } from "./layout/toolbar-header/toolbar-header.component";
+/* import { ToolbarHeaderComponent } from "./layout/toolbar-header/toolbar-header.component";
 import { SideMenuComponent } from "./layout/side-menu/side-menu.component";
-import { MainHomeComponent } from "./layout/main-home/main-home.component";
+import { MainHomeComponent } from "./layout/main-home/main-home.component"; */
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlumnosModule } from "./alumnos/alumnos.module";
 import { CursosModule } from "./cursos/cursos.module";
 import { LoginModule } from "./login/login.module";
+import { LoginComponent } from './login/components/login/login.component';
+import { CoreModule } from "./core/core.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarHeaderComponent,
+    /* ToolbarHeaderComponent,
     SideMenuComponent,
-    MainHomeComponent
+    MainHomeComponent, */
+    LoginComponent
+
 
   ],
   imports: [
@@ -32,7 +36,9 @@ import { LoginModule } from "./login/login.module";
     FormsModule,
     CursosModule,
     AlumnosModule,
-    LoginModule
+    CoreModule,
+
+
 
   ],
   providers: [],

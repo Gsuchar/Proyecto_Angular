@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Sesion } from 'src/app/models/sesion';
-import { SesionUserService } from 'src/app/services/sesion-user.service';
+import { Sesion } from 'src/app/core/models/sesion';
+import { SesionUserService } from 'src/app/core/services/sesion-user.service';
 
 @Component({
   selector: 'app-toolbar-header',
