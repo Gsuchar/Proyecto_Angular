@@ -18,6 +18,8 @@ import {CdkTableModule} from '@angular/cdk/table';
 import {MatPaginator} from '@angular/material/paginator';
 /* import { MatTableFilterModule } from '@angular/material/';*/
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 @NgModule({
     imports:[
@@ -34,8 +36,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
       MatDialogModule,
       CdkTableModule,
       MatListModule,
-      MatSlideToggleModule
-
+      MatSlideToggleModule,
+      MatPaginatorModule,
 
 
     ],
@@ -53,9 +55,9 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
       MatDialogModule,
       CdkTableModule,
       MatListModule,
-      MatSlideToggleModule
-
-
+      MatSlideToggleModule,
+      MatPaginatorModule,
+      MatPaginator
     ],
 
 })

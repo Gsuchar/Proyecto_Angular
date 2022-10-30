@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { CursoGdComponent } from './components/curso-gd/curso-gd.component';
 
 const routes: Routes = [
-  { path: 'cursos', component: CursoGdComponent },
+  //ruta vacia porque lo mando del app-routing
+  { path: '', component: CursoGdComponent },
 ];
 
 @NgModule({

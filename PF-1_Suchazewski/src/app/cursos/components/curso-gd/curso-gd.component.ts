@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-
 import { Curso } from 'src/app/cursos/models/curso_interface';
 import { CursoAltaComponent } from "./curso-new/curso-alta/curso-alta.component";
 import { MatDialog } from '@angular/material/dialog';
 import { CursosDataService } from "../../services/cursos-data.service";
 import { map, Observable  } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
 
 
 
@@ -14,7 +14,7 @@ import { map, Observable  } from 'rxjs';
   templateUrl: './curso-gd.component.html',
   styleUrls: ['./curso-gd.component.css']
 })
-export class CursoGdComponent implements OnInit {
+export class CursoGdComponent implements OnInit, AfterViewInit {
 
  //DESAFIO
  cursos$!: Observable<Curso[]> ;
@@ -24,11 +24,19 @@ export class CursoGdComponent implements OnInit {
  datosCursosLista = new MatTableDataSource<Curso>(this.datosCursos)
  /* CursosbCols: string [] = ['id','nombre','grupo','profesor','fechaInicio','fechaFin','inscripcion','acciones']; */
  CursosbCols: string [] = ['id','nombre','categoria','estado','descripcion','acciones'];
+ @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+ ngAfterViewInit() {
+   this.datosCursosLista.paginator = this.paginator;
+   this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+ }
 
 
  constructor(
    private dialog: MatDialog,
-   private cursosDataService: CursosDataService
+   private cursosDataService: CursosDataService,
+
    ) { }
 
  ngOnInit(): void {

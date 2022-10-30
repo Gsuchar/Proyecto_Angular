@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Alumno } from 'src/app/alumnos/models/alumno_interface';
 import { AlumnoAltaComponent } from "./alumno-new/alumno-alta/alumno-alta.component";
 import { MatDialog } from '@angular/material/dialog';
 import { AlumnosDataService } from "../../services/alumnos-data.service";
 import { map, Observable  } from 'rxjs';
+import { MatPaginator } from '@angular/material/paginator';
+
 
 
 
@@ -23,6 +25,14 @@ export class AlumnoGdComponent implements OnInit {
   datosAlumnos = [];
   datosAlumnosLista = new MatTableDataSource<Alumno>(this.datosAlumnos)
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+ ngAfterViewInit() {
+   this.datosAlumnosLista.paginator = this.paginator;
+   this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+ }
+
 
 
   constructor(

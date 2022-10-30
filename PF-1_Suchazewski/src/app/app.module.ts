@@ -11,8 +11,7 @@ import { MainHomeComponent } from "./layout/main-home/main-home.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlumnosModule } from "./alumnos/alumnos.module";
 import { CursosModule } from "./cursos/cursos.module";
-
-
+import { LoginModule } from "./login/login.module";
 
 
 @NgModule({
@@ -21,6 +20,7 @@ import { CursosModule } from "./cursos/cursos.module";
     ToolbarHeaderComponent,
     SideMenuComponent,
     MainHomeComponent
+
   ],
   imports: [
     BrowserModule,
@@ -31,7 +31,9 @@ import { CursosModule } from "./cursos/cursos.module";
     AppRoutingModule,
     FormsModule,
     CursosModule,
-    AlumnosModule
+    AlumnosModule,
+    LoginModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -23,6 +23,7 @@ import { EstadoCursosPipe } from './pipes/estado-cursos.pipe';
   ],
   providers:[
     CursosDataService
-  ]
+  ],
+  bootstrap: [CursoGdComponent]
 })
 export class CursosModule { }

@@ -56,9 +56,10 @@
       <tr mat-header-row *matHeaderRowDef ="AlumnosbCols"></tr>
       <tr mat-row *matRowDef="let row; columns:AlumnosbCols"></tr>
     </table>
-    <!--POR DESAFIO-->
-    <p>{{alumnos$ | async | json}}</p>
-
   </div>
-  </mat-card>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</mat-card>
+    <!--POR DESAFIO-->
+  <!-- <p>{{alumnos$ | async | json}}</p> -->
+
 

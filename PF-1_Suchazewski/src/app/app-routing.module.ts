@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlumnoGdComponent } from './alumnos/components/alumno-gd/alumno-gd.component';
-import { CursoGdComponent } from './cursos/components/curso-gd/curso-gd.component';
+import { SideMenuComponent } from './layout/side-menu/side-menu.component';
+import { ToolbarHeaderComponent } from './layout/toolbar-header/toolbar-header.component';
+import { LoginComponent } from './login/components/login/login.component';
+
+
 
 const routes: Routes = [
   //aca asigno ruteo
-  /* { path: '', component: AlumnoGdComponent }, */
-  { path: 'alumnos', component: AlumnoGdComponent },
-  { path: 'cursos', component: CursoGdComponent }
+  { path: '',  /* component: LoginComponent */  },
+  { path: 'inicio',  },
+  { path: '',  component: ToolbarHeaderComponent, },
+  //LazyLoad
+  { path: 'alumnos', loadChildren: () => import('./alumnos/alumnos.module').then((alumlazylo)=> alumlazylo.AlumnosModule) },
+  { path: 'cursos', loadChildren: () => import('./cursos/cursos.module').then((curslazylo)=> curslazylo.CursosModule) }
 ];
 
 @NgModule({
