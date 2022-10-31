@@ -7,6 +7,7 @@ import { ToolbarHeaderComponent } from './components/layout/toolbar-header/toolb
 import { SideMenuComponent } from './components/layout/side-menu/side-menu.component';
 import { MainHomeComponent } from './components/layout/main-home/main-home.component';
 import { MaterialModule } from "../material.module";
+import { HttpClientModule } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +22,8 @@ import { MaterialModule } from "../material.module";
   imports: [
     CommonModule,
     CoreRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ]
 })
 export class CoreModule { }

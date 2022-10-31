@@ -11,8 +11,11 @@ import { Sesion } from 'src/app/core/models/sesion';
   styleUrls: ['./side-menu.component.css']
 })
 export class SideMenuComponent {
+  //Datos Sesion
   sesionUser$!: Observable<Sesion>;
-  sesionUser!: any;
+  //Valor si es sesion de Admin
+  sesionAdmin!: boolean | undefined;
+
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -21,13 +24,15 @@ export class SideMenuComponent {
 
   constructor(
     private breakpointObserver: BreakpointObserver,
+    //Consumo servicio global de sesion
     private sesionUserService: SesionUserService,
     ) {
+      //Armo valores para limitar visual segun sea admin o no
       this.sesionUser$ = this.sesionUserService.obtenerSesion();
-      this.sesionUser$.subscribe(evt => console.log('adadadas>>>>'+evt.sesionActiva))
-      this.sesionUser = this.sesionUser$.pipe(
-        map((val) => {return val.sesionActiva})
-      )
+      this.sesionUser$.subscribe(evt => console.log('valorSesionActiva$ >>>> '+evt.sesionActiva))
+      /* this.sesionUser =  */this.sesionUser$.pipe(
+        map(/* (val) => {return val.sesionUsuario?.userAdmin} */valorSesionAdmin=>valorSesionAdmin.sesionUsuario?.userAdmin)
+      ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe()
     }
 
 }

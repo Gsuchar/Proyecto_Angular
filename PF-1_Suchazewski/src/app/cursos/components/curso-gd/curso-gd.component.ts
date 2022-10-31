@@ -15,7 +15,7 @@ import { MatPaginator } from '@angular/material/paginator';
   styleUrls: ['./curso-gd.component.css']
 })
 export class CursoGdComponent implements OnInit, AfterViewInit {
-
+  title!: 'Gestion Alumnos';
  //DESAFIO
  cursos$!: Observable<Curso[]> ;
 
@@ -36,15 +36,20 @@ export class CursoGdComponent implements OnInit, AfterViewInit {
  constructor(
    private dialog: MatDialog,
    private cursosDataService: CursosDataService,
+  )
+  {
+    //BORRAR SOLO PARA VER COMPORTAMIENTO DEL SERVICIO //DESAFIO
+    this.cursos$ = this.cursosDataService.obtenerCursos$();
 
-   ) { }
+    //Paso datos del servicio como observable y lo vuelco directo en la data asiganda a la tabla
+    this.cursosDataService.obtenerCursos$().subscribe( curs => this.datosCursosLista.data = curs as Curso[]);
+    //OTRA OPCION
+    //this.cursos$.subscribe( curs => this.datosCursosLista.data = curs as Curso[]);
+
+  }
 
  ngOnInit(): void {
-   //BORRAR SOLO PARA VER COMPORTAMIENTO DEL SERVICIO //DESAFIO
-   this.cursos$ = this.cursosDataService.obtenerCursos$();
 
-   //Paso datos del servicio como observable y lo vuelco directo en la data asiganda a la tabla
-   this.cursosDataService.obtenerCursos$().subscribe( curs => this.datosCursosLista.data = curs as Curso[]).unsubscribe;
  }
 
 
@@ -55,7 +60,11 @@ export class CursoGdComponent implements OnInit, AfterViewInit {
    }).beforeClosed().subscribe(
      (res: Curso) => {
        this.cursosDataService.editarCurso(res)
+
+
      })
+
+
  }
 
  filtroCurso(event:Event){

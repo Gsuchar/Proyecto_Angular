@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.formLogin.value)
     this.sesionUserService.login(this.formLogin.value.userName, this.formLogin.value.userPass, this.formLogin.value.userAdmin);
-    this.formLogin.valid ? this.router.navigate(['inicio']) : alert('Debe completar los datos correctamente para Entrar.')
+    this.formLogin.valid ? this.router.navigate(['inicioPanel']) : alert('INGRESAR CUALQUIER VALOR POR AHORA FUNCIONARA...')
     /* if(this.formLogin.valid){
     this.router.navigate(['inicio']);
     } */

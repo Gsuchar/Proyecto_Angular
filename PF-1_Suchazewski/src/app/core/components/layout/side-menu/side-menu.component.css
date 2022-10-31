@@ -21,6 +21,10 @@
   background-color: #303030;
   border-right: #303030 1px solid;
 }
+.activeLink{
+  background-color: #303030;
+  border-right: #303030 1px solid;
+}
 .sidenav .mat-toolbar {
   background: inherit;
 }

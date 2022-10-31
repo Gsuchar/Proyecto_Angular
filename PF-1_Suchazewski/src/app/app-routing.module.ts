@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-/*import { SideMenuComponent } from './layout/side-menu/side-menu.component';
- import { ToolbarHeaderComponent } from './layout/toolbar-header/toolbar-header.component';*/
 import { LoginComponent } from './login/components/login/login.component';
 
 
@@ -9,12 +7,7 @@ import { LoginComponent } from './login/components/login/login.component';
 const routes: Routes = [
   //aca asigno ruteo
   { path: '', redirectTo:'login', pathMatch : 'full'},
-  { path: 'login',  component: LoginComponent  },
-
-  /* { path: '',  component: ToolbarHeaderComponent, }, */
-  /* //LazyLoad
-  { path: 'alumnos', loadChildren: () => import('./alumnos/alumnos.module').then((alumlazylo)=> alumlazylo.AlumnosModule) },
-  { path: 'cursos', loadChildren: () => import('./cursos/cursos.module').then((curslazylo)=> curslazylo.CursosModule) } */
+  { path: 'login',  component: LoginComponent  }
 ];
 
 @NgModule({
