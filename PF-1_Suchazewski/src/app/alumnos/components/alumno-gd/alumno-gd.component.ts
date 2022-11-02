@@ -6,48 +6,31 @@ import { MatDialog } from '@angular/material/dialog';
 import { AlumnosDataService } from "../../services/alumnos-data.service";
 import { map, Observable  } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
-
-
-
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-alumno-gd',
   templateUrl: './alumno-gd.component.html',
   styleUrls: ['./alumno-gd.component.css']
 })
-export class AlumnoGdComponent implements OnInit {
-
-  //DESAFIO
+export class AlumnoGdComponent{
+  title!: 'Gestion Alumnos';
   alumnos$!: Observable<Alumno[]> ;
-
-  //Datos de Tabla visual
-  datosAlumnos = [];
-  datosAlumnosLista = new MatTableDataSource<Alumno>(this.datosAlumnos)
+  datosAlumnosLista = new MatTableDataSource<Alumno>();
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
-  @ViewChild(MatPaginator)
-  paginator!: MatPaginator;
+  @ViewChild(MatPaginator)paginator!: MatPaginator;
 
  ngAfterViewInit() {
+   this.alumnos$.subscribe( alumD => this.datosAlumnosLista.data = alumD ).unsubscribe
    this.datosAlumnosLista.paginator = this.paginator;
    this.paginator._intl.itemsPerPageLabel = 'items por pagina';
  }
-
-
-
   constructor(
     private dialog: MatDialog,
-    private alumnosDataService: AlumnosDataService
-    ) { }
-
-  ngOnInit(): void {
-    //BORRAR SOLO PARA VER COMPORTAMIENTO DEL SERVICIO //DESAFIO
-    this.alumnos$ = this.alumnosDataService.obtenerAlumnos$();
-
-    //Paso datos del servicio como observable y lo vuelco directo en la data asiganda a la tabla
-    this.alumnosDataService.obtenerAlumnos$().subscribe(alum => this.datosAlumnosLista.data = alum as Alumno[]).unsubscribe;
-  }
-
+    private alumnosDataService: AlumnosDataService,
+    private router : Router
+    )
+    { this.alumnos$ = this.alumnosDataService.obtenerAlumnos$(); }
 
   editarAlumno(element:any){
     this.dialog.open(AlumnoAltaComponent, {
@@ -55,7 +38,8 @@ export class AlumnoGdComponent implements OnInit {
       data: element
     }).beforeClosed().subscribe(
       (res: Alumno) => {
-        this.alumnosDataService.editarAlumno(res)
+        this.alumnosDataService.editarAlumno(res);
+        this.actualizoVisualData();
       })
   }
 
@@ -66,6 +50,8 @@ export class AlumnoGdComponent implements OnInit {
 
   DeleteAlumno(deleteAlumnoId: number) {
     this.alumnosDataService.deleteAlumno(deleteAlumnoId);
+    this.actualizoVisualData();
+
   }
 
   nuevoAlumno() {
@@ -81,10 +67,20 @@ export class AlumnoGdComponent implements OnInit {
         }
         //PASO VALORES AL SUBJECT DLE SERVICIO
         this.alumnosDataService.agregarAlumno(ultiAlumno);
-
+        this.actualizoVisualData();
       }
     })
   }
+  actualizoVisualData(){
+    this.alumnos$.subscribe( alumD => this.datosAlumnosLista.data = alumD ).unsubscribe
+    //RouteReuseStrategy es un provider de Angular
+    /* Nos brinda la estrategia que nos permite decidir qué componente de ruta puede vivir más allá de su enrutamiento,
+    y qué componente de ruta está condenado a ser creado y recreado cada vez que un usuario sale o ingresa a la ruta. */
+    let currentUrl = this.router.url;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([currentUrl]);
+    }
 /* Llave fin*/
 }
 

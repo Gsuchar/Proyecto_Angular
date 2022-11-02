@@ -19,7 +19,7 @@
   </div>
 
   <div class="">
-    <table mat-table [dataSource]="cursos$" class="col-md-12 mat-elevation-z8" matSort>
+    <table mat-table [dataSource]="datosCursosLista" class="col-md-12 mat-elevation-z8" matSort>
       <!-- 'id' -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -81,7 +81,7 @@
 
 
   </div>
-  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page of users"></mat-paginator>
   </mat-card>
 <!--POR DESAFIO-->
 <!-- <p>{{cursos$ | async | json}}</p> -->
