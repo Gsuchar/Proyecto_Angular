@@ -1,9 +1,0 @@
-<h1>Lista de nombres con ngFor</h1>
-<p>Muestra personas mayores a 30 años.</p>
-<ul>
-    <div *ngFor="let persona of listaNombres">
-        <li *ngIf="persona.edad > 30">
-            {{persona.nombre | uppercase }} - {{persona.edad}} Años.
-        </li>
-    </div>
-</ul>
