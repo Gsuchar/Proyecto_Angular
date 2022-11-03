@@ -19,7 +19,7 @@ body {
   width: 1080px;
   /*no scrolls
   overflow: hidden;*/
-  height: 97%;
+  height: 98vh;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
   background-color: transparent;
