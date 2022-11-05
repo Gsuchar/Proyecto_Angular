@@ -14,9 +14,6 @@ import { LoginComponent } from './login/components/login/login.component';
   declarations: [
     AppComponent,
     LoginComponent
-
-
-
   ],
   imports: [
     BrowserModule,
@@ -24,11 +21,7 @@ import { LoginComponent } from './login/components/login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
-    CoreModule,
-
-
-
-
+    CoreModule
   ],
 
   providers: [],

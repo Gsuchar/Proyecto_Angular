@@ -27,9 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log(this.formLogin.value)
+
+
     this.sesionUserService.login(this.formLogin.value.userName, this.formLogin.value.userPass, this.formLogin.value.userAdmin);
     this.formLogin.valid ? this.router.navigate(['inicioPanel']) : alert('INGRESAR CUALQUIER VALOR POR AHORA FUNCIONARA...')
+    console.log(this.formLogin)
+    //console.log(this.formLogin.value)
+    //this.sesionUserService.login(this.formLogin.value.userName, this.formLogin.value.userPass, this.formLogin.value.userAdmin);
+    //this.formLogin.valid ? this.router.navigate(['inicioPanel']) : alert('INGRESAR CUALQUIER VALOR POR AHORA FUNCIONARA...')
+
     /* if(this.formLogin.valid){
     this.router.navigate(['inicio']);
     } */

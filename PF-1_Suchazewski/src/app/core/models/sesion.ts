@@ -1,4 +1,4 @@
-import { Usuario } from "./usuario";
+import { Usuario } from "../../usuarios/models/usuario_interface";
 
 export interface Sesion {
   sesionActiva: boolean;
