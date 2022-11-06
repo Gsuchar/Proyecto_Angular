@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '',  component: InicioComponent, canActivate : [AutenticacionGuard]  , children: [
     { path: 'alumnos', loadChildren: () => import('../alumnos/alumnos.module').then((alumlazylo)=> alumlazylo.AlumnosModule)},
     { path: 'cursos', loadChildren: () => import('../cursos/cursos.module').then((curslazylo)=> curslazylo.CursosModule)},
+    { path: 'inscripciones', loadChildren: () => import('../inscripciones/inscripciones.module').then((userlazylo)=> userlazylo.InscripcionesModule)},
     { path: 'usuarios', loadChildren: () => import('../usuarios/usuarios.module').then((userlazylo)=> userlazylo.UsuariosModule)},
   ]}
 ];
