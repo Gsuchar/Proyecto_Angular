@@ -19,7 +19,8 @@ import {MatPaginator} from '@angular/material/paginator';
 /* import { MatTableFilterModule } from '@angular/material/';*/
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
     imports:[
@@ -38,7 +39,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
       MatListModule,
       MatSlideToggleModule,
       MatPaginatorModule,
-
+      MatStepperModule,
+      MatCheckboxModule
 
     ],
     exports:[
@@ -57,7 +59,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
       MatListModule,
       MatSlideToggleModule,
       MatPaginatorModule,
-      MatPaginator
+      MatPaginator,
+      MatStepperModule,
+      MatCheckboxModule
     ],
 
 })

@@ -11,7 +11,7 @@ export class CursoAltaComponent implements OnInit {
   /* aca asigno nombre de titulo dle dialog q quiero mostrar para luego cambiar segun la accion a realizaar*/
   public title='Alta Curso';
   formCurso: FormGroup;
-  check?:false;
+
 
   constructor(
     public dialogRef: MatDialogRef<CursoAltaComponent>,
@@ -70,9 +70,6 @@ export class CursoAltaComponent implements OnInit {
     }
   }
 
-  checkSli(){
-
-  }
 
 
 }
