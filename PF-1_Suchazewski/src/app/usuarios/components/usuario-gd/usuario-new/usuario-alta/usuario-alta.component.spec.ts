@@ -17,7 +17,10 @@ describe('UsuarioAltaComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Se creo el componente', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 });

@@ -21,23 +21,10 @@ export class UsuarioAltaComponent implements OnInit {
   {
     this.formUsuario = this.fb.group(
       {
-        /* id:[''],
-        nombre: new FormControl('',[Validators.required]),
-        grupo: new FormControl('',[Validators.required]),
-        profesor: new FormControl('',[Validators.required]),
-        fechaInicio: [99/99/9999],
-        fechaFin: [99/99/9999],
-        /* inscripcion: new FormControl(true,[Validators.required])
-        inscripcion: [true]*/
-
         id:[''],
         userName: new FormControl('',[Validators.required]),
         userPass: new FormControl('',[Validators.required]),
-        userAdmin: [false],
-        //por ahora siempre estaran abiertos a inscripcion
-        /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
-        /* descripcion: new FormControl('',[Validators.required]) */
-
+        userAdmin: [false]
       }
     )
 
@@ -51,9 +38,6 @@ export class UsuarioAltaComponent implements OnInit {
           userName: new FormControl(data.userName,[Validators.required]),
           userPass: new FormControl(data.userPass,[Validators.required]),
           userAdmin: [data.userAdmin],
-          //por ahora siempre estaran abiertos a inscripcion
-          /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
-          /* descripcion: new FormControl(data.descripcion,[Validators.required]) */
         }
       )
     }

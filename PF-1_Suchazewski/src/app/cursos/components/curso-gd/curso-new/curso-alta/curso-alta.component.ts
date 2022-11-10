@@ -21,15 +21,6 @@ export class CursoAltaComponent implements OnInit {
   {
     this.formCurso = this.fb.group(
       {
-        /* id:[''],
-        nombre: new FormControl('',[Validators.required]),
-        grupo: new FormControl('',[Validators.required]),
-        profesor: new FormControl('',[Validators.required]),
-        fechaInicio: [99/99/9999],
-        fechaFin: [99/99/9999],
-        /* inscripcion: new FormControl(true,[Validators.required])
-        inscripcion: [true]*/
-
         id:[''],
         nombre: new FormControl('',[Validators.required]),
         categoria: new FormControl('',[Validators.required]),

@@ -17,7 +17,15 @@ describe('LoginComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Se creo el componente', () => {
     expect(component).toBeTruthy();
   });
+
+  /* it(`Formulario invalido si no agrego contraseña`, () => {
+    const Formulario = component.formLogin
+    const userName = Formulario.controls['userName']
+    userName.setValue('VEGUETA');
+    expect(Formulario.valid).toBeFalse();
+
+  }); */
 });

@@ -1,12 +1,10 @@
 <mat-card class="card_listas">
   <div>
     <h2>
-      Listado de Usuarios
+      {{title}}
     </h2>
   </div>
   <div class="container panel_listas">
-
-
     <mat-form-field class="col-md-4">
       <mat-label>Buscar</mat-label>
       <input type="text" matInput (keyup)="filtroUser($event)">
@@ -15,9 +13,7 @@
       <mat-icon>format_list_bulleted_add</mat-icon>
       <!-- <mat-icon>assignment_add</mat-icon> -->
     </button>
-
   </div>
-
   <div class="">
     <table mat-table [dataSource]="datosUsersLista" class="col-md-12 mat-elevation-z8" matSort>
       <!-- 'id' -->
@@ -44,7 +40,6 @@
             : 'hsl(348, 100%, 61%)'
           }">{{element.userAdmin | userAdmin}} </td>
       </ng-container>
-
       <!-- 'acciones' -->
       <ng-container matColumnDef="acciones">
         <th mat-header-cell *matHeaderCellDef>ACCIONES</th>
@@ -57,14 +52,9 @@
           </button>
         </td>
       </ng-container>
-      <!-- <tr mat-header-row *matHeaderCellDef="['Id','Nombre','Grupo','Profesor','Inicio','Fin','Abierto','Acciones']"></tr> -->
       <tr mat-header-row *matHeaderRowDef ="UserCols"></tr>
       <tr mat-row *matRowDef="let row; columns : UserCols"></tr>
     </table>
-    <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
-
-
-
   </div>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page of users"></mat-paginator>
   </mat-card>

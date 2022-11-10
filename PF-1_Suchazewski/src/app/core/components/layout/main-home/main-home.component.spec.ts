@@ -34,7 +34,14 @@ describe('MainHomeComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should compile', () => {
+  it('Se creo el componente', () => {
     expect(component).toBeTruthy();
   });
+  //AGREGADO POR DESAFIO
+  it(`El titulo tendria que ser 'Bienvenidos'`, () => {
+    const fixture = TestBed.createComponent(MainHomeComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual("Bienvenidos");
+  });
+
 });

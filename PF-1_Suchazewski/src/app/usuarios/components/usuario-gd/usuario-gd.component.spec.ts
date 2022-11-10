@@ -17,7 +17,16 @@ describe('UsuarioGdComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('Se creo el componente.', () => {
     expect(component).toBeTruthy();
   });
+
+  /* it(`El titulo tendria que ser 'Gestion Usuarios'`, () => {
+    const fixture = TestBed.createComponent(UsuarioGdComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual("Gestion Usuarios");
+  });
+ */
+
+
 });
