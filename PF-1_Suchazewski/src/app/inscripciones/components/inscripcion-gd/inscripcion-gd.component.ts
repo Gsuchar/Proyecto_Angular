@@ -41,8 +41,8 @@ export class InscripcionGdComponent implements AfterViewInit {
       data: element
     }).beforeClosed().subscribe(
       (res: Inscripcion) => {
-        /* this.cursosDataService.editarCurso(res)
-        this.actualizoVisualData(); */
+        this.inscDataService.editarInscripcion(res)
+        this.actualizoVisualData();
       }
     )
   }
@@ -65,12 +65,12 @@ export class InscripcionGdComponent implements AfterViewInit {
    ).beforeClosed().subscribe(
      (res: Inscripcion) => {
      if (res!=undefined) {
-       let ultiCurso = {
+       let ultiInsc = {
          ...res
 
-        };console.log('LALAL>> '+ultiCurso.inscAlumno);
+        };console.log('LALAL>> '+ultiInsc);
        //PASO VALORES AL SERVICIO
-      /*  this.cursosDataService.agregarCurso(ultiCurso); */
+       this.inscDataService.agregarInscripcion(ultiInsc);
        this.actualizoVisualData();
       }
     })
