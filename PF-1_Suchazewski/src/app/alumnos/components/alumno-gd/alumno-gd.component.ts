@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./alumno-gd.component.css']
 })
 export class AlumnoGdComponent{
-  title!: 'Gestion Alumnos';
+  titleAlu!: "Gestion Alumnos";
   alumnos$!: Observable<Alumno[]> ;
   datosAlumnosLista = new MatTableDataSource<Alumno>();
   AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
@@ -30,7 +30,7 @@ export class AlumnoGdComponent{
     private alumnosDataService: AlumnosDataService,
     private router : Router
     )
-    { this.alumnos$ = this.alumnosDataService.obtenerAlumnos$(); }
+    { this.alumnos$ = this.alumnosDataService.obtenerAlumnos$(); this.titleAlu= "Gestion Alumnos"; }
 
   editarAlumno(element:any){
     this.dialog.open(AlumnoAltaComponent, {
