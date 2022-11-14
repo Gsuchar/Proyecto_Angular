@@ -11,6 +11,6 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 export class MainHomeComponent {
   /** Based on the screen size, switch from standard to one column per row */
 
-  title='Bienvenidos';
+  /* title='Bienvenidos'; */
   constructor() {}
 }

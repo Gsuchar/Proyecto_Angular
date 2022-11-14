@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./curso-gd.component.css']
 })
 export class CursoGdComponent implements /* OnInit, */ AfterViewInit {
-  title!: 'Gestion Cursos';
+  titleCurs!: "Gestion Cursos";
   cursos$!: Observable<Curso[]> ;
   datosCursosLista = new MatTableDataSource<Curso>()
   CursosbCols: string [] = ['id','nombre','categoria','estado','descripcion','acciones'];
@@ -32,7 +32,7 @@ export class CursoGdComponent implements /* OnInit, */ AfterViewInit {
     private cursosDataService: CursosDataService,
     private router : Router
   )
-  { this.cursos$ = this.cursosDataService.obtenerCursos$();  }
+  { this.cursos$ = this.cursosDataService.obtenerCursos$();    this.titleCurs= "Gestion Cursos";}
 
   editarCurso(element:any){
     this.dialog.open(CursoAltaComponent, {
