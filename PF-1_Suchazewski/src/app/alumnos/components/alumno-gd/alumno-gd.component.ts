@@ -7,6 +7,8 @@ import { AlumnosDataService } from "../../services/alumnos-data.service";
 import { map, Observable  } from 'rxjs';
 import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
+import { Sesion } from 'src/app/core/models/sesion';
+import { SesionUserService } from 'src/app/core/services/sesion-user.service';
 
 @Component({
   selector: 'app-alumno-gd',
@@ -14,10 +16,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./alumno-gd.component.css']
 })
 export class AlumnoGdComponent{
+
+  //Datos Sesion
+  sesionUser$!: Observable<Sesion>;
+  //Valor si es sesion de Admin
+  sesionAdmin?: boolean | undefined;
+
+  //-----------------------------
+
   titleAlu!: "Gestion Alumnos";
   alumnos$!: Observable<Alumno[]> ;
   datosAlumnosLista = new MatTableDataSource<Alumno>();
-  AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones'];
+  AlumnosbCols: string [] = [];
+  /* AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones']; */
   @ViewChild(MatPaginator)paginator!: MatPaginator;
 
  ngAfterViewInit() {
@@ -28,9 +39,29 @@ export class AlumnoGdComponent{
   constructor(
     private dialog: MatDialog,
     private alumnosDataService: AlumnosDataService,
+    private sesionUserService: SesionUserService,
     private router : Router
     )
-    { this.alumnos$ = this.alumnosDataService.obtenerAlumnos$(); this.titleAlu= "Gestion Alumnos"; }
+    {
+      //Armo valores para limitar visual segun sea admin o no
+      this.sesionUser$ = this.sesionUserService.obtenerSesion();
+      /* this.sesionUser$.subscribe(evt => console.log('valorSesionActiva$ >>>> '+evt.sesionActiva)) */
+      this.sesionUser$.pipe(
+        map(valorSesionAdmin=>valorSesionAdmin.sesionUsuario?.userAdmin)
+      ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe()
+      //------------------------------------------------------------------------
+      /* if (this.sesionAdmin===true) {
+        this.AlumnosbCols = ['id','nombre','apellido','telefono','email', 'acciones'];
+      }else{
+        this.AlumnosbCols = ['id','nombre','apellido','telefono','email'];
+      } */
+
+      this.sesionAdmin ? this.AlumnosbCols = ['id','nombre','apellido','telefono','email', 'acciones'] :  this.AlumnosbCols = ['id','nombre','apellido','telefono','email'];
+
+      this.alumnos$ = this.alumnosDataService.obtenerAlumnos$();
+      this.titleAlu= "Gestion Alumnos";
+
+    }
 
   editarAlumno(element:any){
     this.dialog.open(AlumnoAltaComponent, {

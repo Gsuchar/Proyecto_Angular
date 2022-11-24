@@ -16,8 +16,8 @@ export class AutenticacionGuard implements CanActivate, CanActivateChild, CanDea
 
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    route?: ActivatedRouteSnapshot,
+    state?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     /* return true; */
     return this.sesionUserService.obtenerSesion().pipe(
       map((sesionUserService : Sesion)=>{
