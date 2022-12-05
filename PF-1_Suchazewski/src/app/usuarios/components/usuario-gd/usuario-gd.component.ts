@@ -13,9 +13,9 @@ import { Router } from '@angular/router';
   templateUrl: './usuario-gd.component.html',
   styleUrls: ['./usuario-gd.component.css']
 })
-export class UsuarioGdComponent implements /* OnInit, */ AfterViewInit {
+export class UsuarioGdComponent implements AfterViewInit {
 
-  title!: 'Gestion Usuarios';
+  title = 'Gestión Usuarios';
   users$!: Observable<Usuario[]> ;
   datosUsersLista = new MatTableDataSource<Usuario>()
   UserCols: string [] = ['id','nombre','pass','admin','acciones'];
@@ -32,9 +32,9 @@ export class UsuarioGdComponent implements /* OnInit, */ AfterViewInit {
     private usersDataService: UsuariosDataService,
     private router : Router
   )
-  { this.users$ = this.usersDataService.obtenerUsers$();
-    this.users$.subscribe(x=> console.log(x))
-    }
+  {
+    this.users$ = this.usersDataService.obtenerUsers$();
+  }
 
   editarUser(element:Usuario){
     this.dialog.open(UsuarioAltaComponent, {

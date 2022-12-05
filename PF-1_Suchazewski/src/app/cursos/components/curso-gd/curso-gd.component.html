@@ -1,7 +1,7 @@
 <mat-card class="card_listas">
   <div>
     <h2>
-      {{titleCurs}}
+      {{title}}
     </h2>
   </div>
   <div class="container panel_listas">
@@ -11,10 +11,8 @@
     </mat-form-field>
     <button mat-icon-button class="col-md-4" (click)="nuevoCurso()">
       <mat-icon>format_list_bulleted_add</mat-icon>
-      <!-- <mat-icon>assignment_add</mat-icon> -->
     </button>
   </div>
-
   <div class="">
     <table mat-table [dataSource]="datosCursosLista" class="col-md-12 mat-elevation-z8" matSort>
       <!-- 'id' -->
@@ -64,6 +62,4 @@
     </table>
   </div>
   <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" aria-label="Select page of users"></mat-paginator>
-  </mat-card>
-<!--POR DESAFIO-->
-<!-- <p>{{cursos$ | async | json}}</p> -->
+</mat-card>

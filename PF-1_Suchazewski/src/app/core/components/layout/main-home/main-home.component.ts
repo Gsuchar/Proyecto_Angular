@@ -19,8 +19,8 @@ export class MainHomeComponent {
   sesionAdmin!: boolean | undefined;
   sesionUserName!: string | undefined
   constructor(
-    private sesionUserService: SesionUserService,
-    private router: Router,
+    private sesionUserService: SesionUserService
+    /* private router: Router, */
   ) {
     //Armo valores para limitar visual segun sea admin o no
     this.sesionUser$ = this.sesionUserService.obtenerSesion();

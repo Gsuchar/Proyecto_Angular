@@ -21,7 +21,7 @@ export class InscripcionGdComponent implements AfterViewInit {
   datosInscripcionesLista = new MatTableDataSource<Inscripcion>()
   InscbCols: string [] = ['id', 'alumno', 'curso', 'acciones'];
   @ViewChild(MatPaginator)paginator!: MatPaginator;
-  titleInsc: any;
+  title = 'Gestión Inscripciones';
 
 
   ngAfterViewInit(): void {
@@ -34,7 +34,10 @@ export class InscripcionGdComponent implements AfterViewInit {
     private dialog: MatDialog,
     private router : Router,
     private inscDataService : InscripcionesDataService
-  ) { this.insc$ = this.inscDataService.obtenerInscripciones$(), this.titleInsc= 'Gestion Inscripciones';  }
+  ) {
+      this.insc$ = this.inscDataService.obtenerInscripciones$();
+      /* this.titleInsc= 'Gestion Inscripciones'; */
+    }
 
   editarInscripcion(element:any){
     this.dialog.open(InscripcionAltaComponent, {

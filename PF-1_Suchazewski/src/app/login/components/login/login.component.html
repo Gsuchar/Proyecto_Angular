@@ -12,16 +12,16 @@
       <div class="">
         <mat-form-field  appearance="fill" class="fill">
           <mat-label>Contraseña</mat-label>
-          <input type="text" matInput formControlName="userPass">
+          <input type="password" matInput formControlName="userPass">
         </mat-form-field>
         <p *ngIf="formLogin.get('userPass')?.touched && formLogin.get('userPass')?.errors?.['required']" class="text-danger">Ingresa la contraseña.</p>
       </div>
 
       <div class="loginFin">
-        <div class="">
+        <!-- <div class="">
           <mat-label>¿Admin?</mat-label>
           <mat-slide-toggle matInput formControlName="userAdmin"></mat-slide-toggle><br>
-        </div>
+        </div> -->
         <div class="">
           <button type="submit" mat-raised-button color="primary">Entrar</button>
         </div>

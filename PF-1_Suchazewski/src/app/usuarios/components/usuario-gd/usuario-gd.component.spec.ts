@@ -21,12 +21,4 @@ describe('UsuarioGdComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  /* it(`El titulo tendria que ser 'Gestion Usuarios'`, () => {
-    const fixture = TestBed.createComponent(UsuarioGdComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual("Gestion Usuarios");
-  });
- */
-
-
 });

@@ -115,11 +115,12 @@
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>Datos de nueva Inscripcion</ng-template>
-      <p>{{firstFormGroup.value | json}}</p>
-      <p>{{secondFormGroup.value | json}}</p>
+      <br>
+      <p>¿Confirma la inscripcion del alumno {{formInscripcion.value.inscAlumno.nombre+' '+formInscripcion.value.inscAlumno.apellido}}, en el curso
+      {{formInscripcion.value.inscCurso.nombre}} ?</p>
       <div class="inscGuardar">
         <button mat-button matStepperPrevious color="warn">Anterior</button>
-        <button mat-button (click)="stepper.reset()">Riniciar</button>
+        <button mat-button (click)="stepper.reset()">Reiniciar</button>
       </div>
       <div mat-dialog-actions>
         <!-- <button mat-button mat-dialog-close>Cancelar</button> -->

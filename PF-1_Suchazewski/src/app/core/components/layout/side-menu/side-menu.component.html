@@ -10,9 +10,7 @@
       <a mat-list-item routerLink="cursos" routerLinkActive="activeLink">Cursos</a>
       <a mat-list-item routerLink="inscripciones" routerLinkActive="activeLink">Inscripciones</a>
       <!-- Solo admin -->
-      <a mat-list-item routerLink="usuarios" *ngIf="sesionAdmin === true"  >Usuarios</a> <!-- *ngIf="sesionAdmin === true" -->
-      <p>{{sesionUser$ | async | json}}</p>
-      <p>ADmin--{{sesionAdmin }}</p>
+      <a mat-list-item routerLink="usuarios" *ngIf="sesionAdmin === true" routerLinkActive="activeLink">Usuarios</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -25,14 +23,13 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>TITULO DE LA PAGINA</span>
-      <!-- {{sesionUser$ | async | json}} -->
+      <span>Panel Administrativo</span>
     <div class="userMenu">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
       </button>
 
-        <p>Bienvenido, {{sesionUserName}}</p>
+        <p>{{sesionUserName}}</p>
       <mat-menu #menu="matMenu" >
         <button mat-menu-item (click)="logOut()">
           <mat-icon>reply</mat-icon>
@@ -42,7 +39,9 @@
     </div>
     </mat-toolbar>
     <!-- CONTENIDO MAIN -->
-    <app-main-home></app-main-home>
+    <!-- <app-main-home></app-main-home> -->
+    <div class="main_container">
     <router-outlet></router-outlet>
+  </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

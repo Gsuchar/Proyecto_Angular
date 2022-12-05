@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./usuario-alta.component.css']
 })
 export class UsuarioAltaComponent implements OnInit {
-  /* aca asigno nombre de titulo dle dialog q quiero mostrar para luego cambiar segun la accion a realizaar*/
+  /* Titulo del dialog que quiero mostrar para luego cambiar segun la accion a realizaar*/
   public title='Alta Usuario';
   formUsuario: FormGroup;
   check?:false;
@@ -29,7 +29,7 @@ export class UsuarioAltaComponent implements OnInit {
     )
 
     console.log(data);
-    /* si llega info actuo, si no no hace nada*/
+    /* si llega info actuo, si no, no hace nada*/
     if(data){
       this.title = 'Editar Usuario';
       this.formUsuario= this.fb.group(
@@ -48,9 +48,8 @@ export class UsuarioAltaComponent implements OnInit {
   }
 
   guardar() {
-   /*  this.dialogRef.close(this.formCurso.value) */
-   if(this.formUsuario.valid){
-    this.dialogRef.close(this.formUsuario.value), console.log(this.formUsuario.value)
+    if(this.formUsuario.valid){
+      this.dialogRef.close(this.formUsuario.value), console.log(this.formUsuario.value)
     }
   }
 

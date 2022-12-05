@@ -24,11 +24,10 @@ export class AlumnoGdComponent{
 
   //-----------------------------
 
-  titleAlu!: "Gestion Alumnos";
+  title = "Gestión Alumnos";
   alumnos$!: Observable<Alumno[]> ;
   datosAlumnosLista = new MatTableDataSource<Alumno>();
   AlumnosbCols: string [] = [];
-  /* AlumnosbCols: string [] = ['id','nombre','apellido','telefono','email','acciones']; */
   @ViewChild(MatPaginator)paginator!: MatPaginator;
 
  ngAfterViewInit() {
@@ -45,21 +44,12 @@ export class AlumnoGdComponent{
     {
       //Armo valores para limitar visual segun sea admin o no
       this.sesionUser$ = this.sesionUserService.obtenerSesion();
-      /* this.sesionUser$.subscribe(evt => console.log('valorSesionActiva$ >>>> '+evt.sesionActiva)) */
       this.sesionUser$.pipe(
         map(valorSesionAdmin=>valorSesionAdmin.sesionUsuario?.userAdmin)
-      ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe()
-      //------------------------------------------------------------------------
-      /* if (this.sesionAdmin===true) {
-        this.AlumnosbCols = ['id','nombre','apellido','telefono','email', 'acciones'];
-      }else{
-        this.AlumnosbCols = ['id','nombre','apellido','telefono','email'];
-      } */
-
+      ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe() ;
+      //Dependiendo si es admin o no armo tabla con acciones o sin ellas(Usuario admin tiene acciones, usuario comun no)
       this.sesionAdmin ? this.AlumnosbCols = ['id','nombre','apellido','telefono','email', 'acciones'] :  this.AlumnosbCols = ['id','nombre','apellido','telefono','email'];
-
       this.alumnos$ = this.alumnosDataService.obtenerAlumnos$();
-      this.titleAlu= "Gestion Alumnos";
 
     }
 
