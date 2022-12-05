@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private sesionUserService: SesionUserService,
-    /* private router: Router */
+
   ) {
     this.formLogin = new FormGroup({
       userName: new FormControl('',[Validators.required]),

@@ -17,7 +17,7 @@ export class SesionUserService {
     ) {
     const sesion: Sesion = {
       sesionActiva: false
-    };
+    }
     this.sesionSubjet$ = new BehaviorSubject(sesion);
    //Fin Constructor
   }
@@ -30,22 +30,17 @@ export class SesionUserService {
         for(let index = 0; index < usuariosData.length; index++) {
           const element: Usuario = usuariosData[index];
           if ((element.userName === user) && (element.userPass === pass)  ) {
-            console.log( ' SON IGUALES SI >>>> '+element.userName, pass, element.userAdmin);
             this.login(element.userName, element.userPass, element.userAdmin, element.id)
-
-            index = usuariosData.length+99
+            index = usuariosData.length+9999990
           }else{
-            /* alert('Usuario o Contraseña incorrectos, re ingrese')
-            index = usuariosData.length+99; */
             if(index === usuariosData.length-1){
               alert('Usuario o Contraseña incorrectos, re ingrese')
             }
           }
         }
       })
-    ).subscribe(g=>console.log('A VER Q SALE>>> '+g)).unsubscribe
+    ).subscribe().unsubscribe
   }
-
 
 
   login(user: string, pass: string, admin: boolean, id: number){

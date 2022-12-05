@@ -16,18 +16,19 @@ import { Alumno } from 'src/app/alumnos/models/alumno_interface';
 })
 export class InscripcionGdComponent implements AfterViewInit {
 
-
+  title = 'Gestión Inscripciones';
   insc$!: Observable<Inscripcion[]>;
   datosInscripcionesLista = new MatTableDataSource<Inscripcion>()
   InscbCols: string [] = ['id', 'alumno', 'curso', 'acciones'];
   @ViewChild(MatPaginator)paginator!: MatPaginator;
-  title = 'Gestión Inscripciones';
+
 
 
   ngAfterViewInit(): void {
-    this.insc$.subscribe( inscD => this.datosInscripcionesLista.data = inscD ).unsubscribe
+
     this.datosInscripcionesLista.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'items por pagina';
+
  }
 
   constructor(
@@ -36,7 +37,7 @@ export class InscripcionGdComponent implements AfterViewInit {
     private inscDataService : InscripcionesDataService
   ) {
       this.insc$ = this.inscDataService.obtenerInscripciones$();
-      /* this.titleInsc= 'Gestion Inscripciones'; */
+      this.insc$.subscribe( inscD => this.datosInscripcionesLista.data = inscD ).unsubscribe
     }
 
   editarInscripcion(element:any){
@@ -53,7 +54,7 @@ export class InscripcionGdComponent implements AfterViewInit {
 
   filtroInscripcion(event:Event){
    const userData = (event.target as HTMLInputElement).value;
-   this.datosInscripcionesLista.filter= userData.trim().toLocaleLowerCase();
+   this.datosInscripcionesLista.filter = userData.trim().toLocaleLowerCase();
   }
 
   DeleteInscripcion(deleteInscId: number) {
@@ -72,7 +73,7 @@ export class InscripcionGdComponent implements AfterViewInit {
        let ultiInsc = {
          ...res
 
-        };console.log('LALAL>> '+ultiInsc);
+        };
        //PASO VALORES AL SERVICIO
        this.inscDataService.agregarInscripcion(ultiInsc);
        this.actualizoVisualData();

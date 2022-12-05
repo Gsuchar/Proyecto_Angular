@@ -8,7 +8,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./curso-alta.component.css']
 })
 export class CursoAltaComponent implements OnInit {
-  /* aca asigno nombre de titulo dle dialog q quiero mostrar para luego cambiar segun la accion a realizaar*/
+
   public title='Alta Curso';
   formCurso: FormGroup;
 
@@ -25,8 +25,6 @@ export class CursoAltaComponent implements OnInit {
         nombre: new FormControl('',[Validators.required]),
         categoria: new FormControl('',[Validators.required]),
         estado: [false],
-        //por ahora siempre estaran abiertos a inscripcion
-        /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
         descripcion: new FormControl('',[Validators.required])
 
       }
@@ -42,8 +40,6 @@ export class CursoAltaComponent implements OnInit {
           nombre: new FormControl(data.nombre,[Validators.required]),
           categoria: new FormControl(data.categoria,[Validators.required]),
           estado: [data.estado],
-          //por ahora siempre estaran abiertos a inscripcion
-          /* inscripcion: new FormControl(data.inscripcion,[Validators.required]) */
           descripcion: new FormControl(data.descripcion,[Validators.required])
         }
       )
@@ -55,7 +51,7 @@ export class CursoAltaComponent implements OnInit {
   }
 
   guardar() {
-   /*  this.dialogRef.close(this.formCurso.value) */
+
    if(this.formCurso.valid){
     this.dialogRef.close(this.formCurso.value), console.log(this.formCurso.value)
     }

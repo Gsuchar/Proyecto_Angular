@@ -9,13 +9,8 @@
       <mat-label>Categoria</mat-label>
       <input matInput  formControlName="categoria" placeholder="Ingrese Categoria">
     </mat-form-field>
-
-    <!-- <mat-form-field > -->
-      <mat-label>Habilitado </mat-label>
-      <mat-slide-toggle matInput formControlName="estado"></mat-slide-toggle><br>
-      <!-- <input matInput  formControlName="estado" placeholder=""> -->
-    <!-- </mat-form-field> -->
-
+    <mat-label>Habilitado </mat-label>
+    <mat-slide-toggle matInput formControlName="estado"></mat-slide-toggle><br>
     <mat-form-field >
       <mat-label>Descripcion</mat-label>
       <textarea formControlName="descripcion" matInput placeholder="Ingrese Descripcion."></textarea>
@@ -23,6 +18,5 @@
   </form>
 </div>
 <div mat-dialog-actions>
-  <!-- <button mat-button mat-dialog-close>Cancelar</button> -->
   <button mat-button  (click)="guardar()">Guardar</button>
 </div>

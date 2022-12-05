@@ -32,7 +32,6 @@ export class SideMenuComponent {
     ) {
       //Armo valores para limitar visual segun sea admin o no
       this.sesionUser$ = this.sesionUserService.obtenerSesion();
-      /* this.sesionUser$.subscribe(evt => console.log('valorSesionActiva$ >>>> '+evt.sesionActiva)) */
       this.sesionUser$.pipe(
         map(valorSesionAdmin=>valorSesionAdmin.sesionUsuario?.userAdmin)
       ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe()

@@ -25,7 +25,7 @@ export class InscripcionAltaComponent implements OnInit {
   // Conf STEPER
   //----------------------------------------------------------
   firstFormGroup = this._formBuilder.group({
-    firstCtrl: [''/* {value: '', disabled: true}*/ , Validators.required],
+    firstCtrl: ['' , Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
@@ -40,8 +40,7 @@ export class InscripcionAltaComponent implements OnInit {
   alum$!: Observable<Alumno[]>
   curs$!: Observable<Curso[]>
   datosAlumnosLista = new MatTableDataSource<Alumno>();
-  AlumnosbCols: string [] = ['id','nombreapellido', 'acciones'/*, 'email' */];
-  /* @ViewChild(MatPaginator)paginator!: MatPaginator; */
+  AlumnosbCols: string [] = ['id','nombreapellido', 'acciones'];
   datosCursosLista = new MatTableDataSource<Curso>();
   CursosbCols: string [] = ['id','nombre', 'acciones'];
   @ViewChild(MatPaginator)paginator!: MatPaginator;
@@ -77,33 +76,31 @@ export class InscripcionAltaComponent implements OnInit {
               inscCurso:[data.inscCurso]
             });
             this.firstFormGroup = this._formBuilder.group({
-              firstCtrl: [data.inscAlumno.nombre/* {value: '', disabled: true}*/ , Validators.required],
+              firstCtrl: [data.inscAlumno.nombre , Validators.required],
             });
             this.secondFormGroup = this._formBuilder.group({
               secondCtrl: [data.inscCurso.nombre, Validators.required],
             });
         };
-        /* this.alum$ = this.alumServData.obtenerAlumnos$();
-        this.curs$ = this.cursServData.obtenerCursos$(); */
+
 
     }
   ngAfterViewInit() {
-    this.firstFormGroup.invalid;
     this.datosAlumnosLista.paginator = this.paginator;
     this.datosCursosLista.paginator = this.paginator;
     this.paginator._intl.itemsPerPageLabel = 'items por pagina';
   }
 
   ngOnInit(): void {
-    this.alum$.subscribe( alumD => this.datosAlumnosLista.data = alumD ).unsubscribe
-    this.curs$.subscribe( cursD => this.datosCursosLista.data = cursD ).unsubscribe
-    /* this.selectedItems = new Array<string>(); */
+    this.alum$.subscribe( alumD => this.datosAlumnosLista.data = alumD )
+    this.curs$.subscribe( cursD => this.datosCursosLista.data = cursD )
+
   }
 
   guardar() {
-    /*  this.dialogRef.close(this.firstFormGroup.value, this.secondFormGroup.value) */
+
     if(this.formInscripcion.valid){
-     this.dialogRef.close(this.formInscripcion.value/*, this.secondFormGroup.value*/), console.log(this.firstFormGroup.value, this.secondFormGroup.value)
+     this.dialogRef.close(this.formInscripcion.value)
      }
    }
 
@@ -113,72 +110,47 @@ export class InscripcionAltaComponent implements OnInit {
   }
 
   getAlumnoInscipcion(e:any, datosAlumnoChecked: Alumno ){
-	  if(e.checked)	{
-      console.log(datosAlumnoChecked.id + ' checked');
-      /* this.selectedItems.push(id); */
-      console.log(datosAlumnoChecked.id +' '+ datosAlumnoChecked.nombre +' '+ datosAlumnoChecked.apellido  + ' Fchecked');
+      if(e.checked)	{
+        this.firstFormGroup = this._formBuilder.group({
+          firstCtrl: [datosAlumnoChecked.nombre +' '+ datosAlumnoChecked.apellido, Validators.required],
+        });
 
-      /* this.firstFormGroup.value.firstCtrl = nombre +' '+ apellido; */
-      this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: [datosAlumnoChecked.nombre +' '+ datosAlumnoChecked.apellido, Validators.required],
-      });
-      console.log(this.firstFormGroup.value)
+        this.formInscripcion.value.inscAlumno = {
+          id: datosAlumnoChecked.id,
+          nombre: datosAlumnoChecked.nombre,
+          apellido: datosAlumnoChecked.apellido,
+          telefono: datosAlumnoChecked.telefono,
+          email: datosAlumnoChecked.email
+        }
 
-      this.formInscripcion.value.inscAlumno = {
-        id: datosAlumnoChecked.id,
-        nombre: datosAlumnoChecked.nombre,
-        apellido: datosAlumnoChecked.apellido,
-        telefono: datosAlumnoChecked.telefono,
-        email: datosAlumnoChecked.email
       }
+    else{
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: ['', Validators.required],
+      });
+      this.firstFormGroup.invalid;
+    }
 
-      console.log('A VER Q SALIO>> ' + this.formInscripcion.value.inscAlumno.id)
-	  }
-  else{
-    console.log(datosAlumnoChecked.id + 'Unchecked');
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: [''/* {value: '', disabled: true}*/ , Validators.required],
-    });
-    this.firstFormGroup.invalid;
-
-    /* this.selectedItems = this.selectedItems.filter(m=>m!=id); */
-  }
-
-	 /* console.log(this.selectedItems+' -->>>>>> sssssss'); */
   }
 
   getCursoInscipcion(e:any, datosCursoChecked: Curso ){
-	  if(e.checked)	{
-      /* console.log(datosCursoChecked.id + ' checked'); */
-      /* this.selectedItems.push(id); */
-      /* console.log(datosCursoChecked.id +' '+ datosCursoChecked.nombre +' '+ datosCursoChecked.apellido  + ' Fchecked'); */
-
-      /* this.firstFormGroup.value.firstCtrl = nombre +' '+ apellido; */
-      this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: [datosCursoChecked.nombre , Validators.required],
-      });
-      /* console.log(this.secondFormGroup.value) */
-
-      this.formInscripcion.value.inscCurso = {
-        id: datosCursoChecked.id,
-        nombre: datosCursoChecked.nombre,
-        categoria: datosCursoChecked.categoria,
-        estado: datosCursoChecked.estado,
-        descripcion: datosCursoChecked.descripcion
+      if(e.checked)	{
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: [datosCursoChecked.nombre , Validators.required],
+        });
+        this.formInscripcion.value.inscCurso = {
+          id: datosCursoChecked.id,
+          nombre: datosCursoChecked.nombre,
+          categoria: datosCursoChecked.categoria,
+          estado: datosCursoChecked.estado,
+          descripcion: datosCursoChecked.descripcion
+        }
       }
-
-      console.log('A VER Q SALIO>> ' + this.formInscripcion.value.inscAlumno.id)
-	  }
-  else{
-    /* console.log(datosCursoChecked.id + 'Unchecked'); */
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: [''/* {value: '', disabled: true}*/ , Validators.required],
-    });
-    this.secondFormGroup.invalid;
-
-    /* this.selectedItems = this.selectedItems.filter(m=>m!=id); */
-  }
-
-	 /* console.log(this.selectedItems+' -->>>>>> sssssss'); */
+    else{
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: ['' , Validators.required],
+      });
+      this.secondFormGroup.invalid;
+    }
   }
 }
