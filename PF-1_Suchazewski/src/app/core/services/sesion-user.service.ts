@@ -59,7 +59,9 @@ export class SesionUserService {
       }
 
     }
+    //AGREGADO POR REDUX PARA ENTREGA
     this.store.dispatch(loadSesionActiva({sesionUsuario : sesion.sesionUsuario}))
+
     this.sesionSubjet$.next(sesion);
     this.router.navigate(['inicioPanel'])
   }
