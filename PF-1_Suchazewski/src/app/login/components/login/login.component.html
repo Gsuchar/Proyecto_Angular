@@ -3,7 +3,7 @@
     <h1>Bienvenido</h1>
       <div class="">
         <mat-form-field appearance="fill" class="fill">
-          <mat-label>Usuario</mat-label>
+          <mat-label>Usuario ==> admin / user</mat-label>
           <input type="text" matInput formControlName="userName">
 
         </mat-form-field>
@@ -11,7 +11,7 @@
       </div>
       <div class="">
         <mat-form-field  appearance="fill" class="fill">
-          <mat-label>Contraseña</mat-label>
+          <mat-label>Contraseña ==> admin / user</mat-label>
           <input type="password" matInput formControlName="userPass">
         </mat-form-field>
         <p *ngIf="formLogin.get('userPass')?.touched && formLogin.get('userPass')?.errors?.['required']" class="text-danger">Ingresa la contraseña.</p>
@@ -26,7 +26,5 @@
           <button type="submit" mat-raised-button color="primary">Entrar</button>
         </div>
       </div>
-
-
   </form>
 </div>

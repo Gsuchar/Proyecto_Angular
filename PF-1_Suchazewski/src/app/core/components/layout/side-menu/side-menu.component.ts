@@ -5,6 +5,8 @@ import { map, shareReplay } from 'rxjs/operators';
 import { SesionUserService } from 'src/app/core/services/sesion-user.service';
 import { Sesion } from 'src/app/core/models/sesion';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectSesionState } from 'src/app/core/state/sesion.selectors';
 
 @Component({
   selector: 'app-side-menu',
@@ -16,7 +18,7 @@ export class SideMenuComponent {
   sesionUser$!: Observable<Sesion>;
   //Valor si es sesion de Admin
   sesionAdmin!: boolean | undefined;
-  sesionUserName!: string | undefined
+  sesionUserName?: string
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -28,10 +30,15 @@ export class SideMenuComponent {
     private breakpointObserver: BreakpointObserver,
     //Consumo servicio global de sesion
     private sesionUserService: SesionUserService,
+    private store: Store<Sesion>,
     private router: Router,
     ) {
-      //Armo valores para limitar visual segun sea admin o no
-      this.sesionUser$ = this.sesionUserService.obtenerSesion();
+      //Armo valores usando servicio directamente --------No lo borro porque lo usare luego-----
+      /* this.sesionUser$ = this.sesionUserService.obtenerSesion(); */
+
+      //Consumo el feature store de sesion para cumplir con la parte de redux
+      this.sesionUser$ = this.store.select(selectSesionState);
+
       this.sesionUser$.pipe(
         map(valorSesionAdmin=>valorSesionAdmin.sesionUsuario?.userAdmin)
       ).subscribe( admin => this.sesionAdmin = admin ).unsubscribe()

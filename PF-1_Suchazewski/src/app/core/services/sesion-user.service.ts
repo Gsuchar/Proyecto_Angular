@@ -1,9 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable,map, tap, combineLatestAll } from 'rxjs';
 import { Usuario } from 'src/app/usuarios/models/usuario_interface';
 import { UsuariosDataService } from 'src/app/usuarios/services/usuarios-data.service';
 import { Sesion } from '../models/sesion';
+import { loadSesionActiva } from '../state/sesion.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +15,13 @@ export class SesionUserService {
   sesionSubjet$!: BehaviorSubject<Sesion>;
 
   constructor(
+    private store: Store<Sesion>,
     private usuariosDataservice : UsuariosDataService,
     private router: Router
     ) {
     const sesion: Sesion = {
       sesionActiva: false
+
     }
     this.sesionSubjet$ = new BehaviorSubject(sesion);
    //Fin Constructor
@@ -52,7 +57,9 @@ export class SesionUserService {
         userPass: pass,
         userAdmin: admin
       }
+
     }
+    this.store.dispatch(loadSesionActiva({sesionUsuario : sesion.sesionUsuario}))
     this.sesionSubjet$.next(sesion);
     this.router.navigate(['inicioPanel'])
   }

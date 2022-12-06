@@ -23,7 +23,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>Panel Administrativo</span>
+      <h1>Panel Administrativo  e-Study</h1>
     <div class="userMenu">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
         <mat-icon>more_vert</mat-icon>
@@ -39,8 +39,8 @@
     </div>
     </mat-toolbar>
     <!-- CONTENIDO MAIN -->
-    <!-- <app-main-home></app-main-home> -->
     <div class="main_container">
+      <!-- {{sesionUser$ | async |json}} -->
     <router-outlet></router-outlet>
   </div>
   </mat-sidenav-content>
